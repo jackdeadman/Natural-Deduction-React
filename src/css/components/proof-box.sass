@@ -1,0 +1,29 @@
+.proof-box
+  +element("line-numbers")
+    width: $line-number__width
+    float: left
+
+  +element("line-contents")
+    width: calc(100% - #{$line-number__width})
+    float: left
+
+  // Line rules
+  +element("line")
+    padding: $unit
+    margin: $unit 0
+
+    +element("equation")
+      float: left
+
+    +element("rule")
+      float: right
+    @extend .clearfix
+
+  +modifier("assummed")
+    +modifier("closed")
+      +border_to_box_shadow($assumption-box__thickness,$assumption-box__thickness,$assumption-box__thickness,$assumption-box__thickness,$default__color)
+    +modifier("open")
+      +border_to_box_shadow($assumption-box__thickness,$assumption-box__thickness,0,$assumption-box__thickness,$default__color)
+    +element("line-contents")
+      width: calc(100% - #{2*$nest_ident})
+      margin: 0 $nest_ident

@@ -1,0 +1,26 @@
+.container
+  padding: 2*$unit
+  @extend .clearfix
+
+  +modifier('bordered')
+    border: 1px solid $default__color
+
+  +modifier('centered')
+    margin-left: auto
+    margin-right: auto
+
+  +modifier('guttered')
+    margin: $unit
+
+  +modifier('spacey')
+    padding: 2*$unit 3*$unit
+
+  // Size modifiers
+  +modifier('small')
+    width: 30%
+
+  +modifier('medium')
+    width: 80%
+
+  +modifier('large')
+    width: 100%

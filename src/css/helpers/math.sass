@@ -1,0 +1,9 @@
+@function factors($num)
+  $factors: ()
+
+  @for $i from 1 through floor($num / 2)
+    $result: $num / $i
+    @if $result == floor($result)
+      $factors: append($factors, $result)
+
+  @return $factors

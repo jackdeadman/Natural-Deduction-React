@@ -1,0 +1,39 @@
+%pointed
+  width: 20px
+  height: 20px
+  margin-bottom: 1em
+  transform: translateY(0.5em)
+  border-radius: 100%
+  background-color: $default__color
+
+%lined::after
+  content: ''
+  display: block
+  background-color: $default__color
+  width: 5px
+  height: 2.4em
+  transform: translateY(-0.8em)
+  margin: auto
+
+.trail
+  +element("start")
+    @extend %pointed
+    @extend %lined
+    background-color: $default__color
+    &::after
+      transform: translateY(0)
+
+  +element("middle")
+    @extend %pointed
+    background-color: transparent
+    @extend %lined
+
+  +element("end")
+    @extend %pointed
+    @extend %lined
+    background-color: $default__color
+    &::after
+      transform: translateY(-1.6em)
+
+  +element("single")
+    @extend %pointed

@@ -1,0 +1,24 @@
+.grid
+  background: white
+  margin: 0 0 $grid__pad 0
+  @extend .clearfix
+
+[class*='col-']
+  float: left
+  padding-right: $grid__pad
+  .grid &:last-of-type
+    padding-right: 0
+
+/* Opt-in outside padding */
+.grid-pad
+  padding: $grid__pad 0 $grid__pad $grid__pad
+  [class*='col-']:last-of-type
+    padding-right: $grid__pad
+
+=create_column($num, $den)
+  .col-#{$num}-#{$den}
+    width: percentage($num / $den)
+
+@each $i in factors($grid__size)
+  @for $j from 1 through $i
+    +create_column($j,$i)
