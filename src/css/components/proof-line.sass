@@ -1,0 +1,40 @@
+.proof-line
+  padding: $unit
+  margin: $unit 0
+
+  +modifier('prompted')
+    padding: 0
+    +element('prompt')
+      +element('line-number')
+        padding-top: 10px
+      padding: $unit
+      float: left
+      width: 100%
+      cursor: pointer
+      text-align: center
+      +modifier('blur')
+        background-color: #eeeeee
+        color: #b1b1b1
+      +modifier('focus')
+        border-bottom: 2px solid $primary__color--dark
+        // background-color: $primary__color--dark
+        // color: #eeeeee
+
+  +element('line-number')
+    position: absolute
+    left: 0
+
+    +modifier('active')
+      border-radius: 10px
+      background-color: $primary__color--dark
+      color: $primary__color--dark-contrast
+      padding: $unit/2 $unit
+      left: -$unit
+
+  +element('equation')
+    float: left
+
+  +element('rule')
+    float: right
+
+  @extend .clearfix
