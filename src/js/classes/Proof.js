@@ -1,27 +1,11 @@
 // Structure to represent a natural deduction proof
 class Proof {
-  constructor(premises, previousLine) {
-    this.children = [];
-    this.data = null;
-    this.rule = null;
-    this.previous = previousLine || null;
+  constructor(previousLine = null, ...premises) {
 
-    if (premises !== undefined) {
-      var previousLine = null;
-      var lines = premises.map(prem => {
-        var line = new Proof();
-        line.data = prem;
-        line.rule = 'Premise';
-        // Create a two way link, only one child as
-        // all premises are in the same scope
-        if (previousLine !== null) {
-          previousLine.children = [line];
-        }
-        line.previous = previousLine;
-        previousLine = line;
-      });
-    }
-
+    premises.forEach(line => {
+      previousLine = new Proof(previousLine);
+    });
+    return previousLine;
   }
 
   isStart() {
@@ -32,16 +16,76 @@ class Proof {
     return this.children === [];
   }
 
-  static createProof() {
-    var line1 = new Proof(['A^B'])
-    var ass = new Assumption(line1, 'A');
-    ass.children = new Proof(['a','b'], ass);
+  isAssumption() {
+    return false;
+  }
 
-    line1.children = [
-      ass,
-      new Assumption(line1, 'B')
-    ];
-    return line1;
+  static walk(fn) {
+    if (!this) return;
+    fn(this);
+    this.children.forEach(child => {
+      Proof.walk.bind(child)(fn);
+    });
+  }
+
+  static createProof() {
+    var proof = {
+      data: '1',
+      rule: 'Premise',
+      isAssumption: () => true,
+      children: [
+        {
+          data: '2',
+          rule: 'Assumption',
+          isAssumption: () => true,
+          children: [{
+            data: '3',
+            rule: 'Disjuction Intro Intro',
+            isAssumption: () => false,
+            children: [{
+              data: '4',
+              rule: 'Premise',
+              isAssumption: () => false,
+              children: [{
+                data: '5',
+                rule: 'Premise',
+                isAssumption: () => false,
+                children: []
+              }]
+            }]
+          }]
+        },
+        {
+        data: '6',
+        rule: 'Premise',
+        isAssumption: () => true,
+        children: [
+          {
+            data: '7',
+            rule: 'Assumption',
+            isAssumption: () => true,
+            children: [{
+              data: '8',
+              rule: 'Disjuction Intro Intro',
+              isAssumption: () => true,
+              children: [{
+                data: '9',
+                rule: 'Premise',
+                isAssumption: () => false,
+                children: [{
+                  data: '10',
+                  rule: 'Premise',
+                  isAssumption: () => false,
+                  children: []
+                }]
+              }]
+            }]
+          }]
+        }
+      ]
+    }
+    window.proof = proof;
+    return proof;
   }
 }
 
@@ -52,6 +96,10 @@ class Assumption extends Proof{
     super();
     this.previous = previous;
     this.data = assumed;
+  }
+
+  isAssumption() {
+    return true;
   }
 }
 

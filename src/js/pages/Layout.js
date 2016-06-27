@@ -3,7 +3,9 @@ import React from 'react'
 import Header from './layout/Header'
 import Controls from './layout/Controls'
 import ProofDeclaration from './layout/ProofDeclaration'
-// import ProofBox from './layout/ProofBox'
+import ProofBox from './../components/ProofBox'
+
+import Proof from './../classes/Proof'
 
 class Layout extends React.Component {
 
@@ -21,7 +23,7 @@ class Layout extends React.Component {
         <div class="grid">
           <div class="col-2-3">
             <ProofDeclaration premises={premises} conclusion={conclusion} />
-            {/* <ProofBox/> */}
+            <ProofBox proofState={Proof.createProof()}/>
           </div>
           <div class="col-1-3">
             {/* <ProofRules/>*/}
