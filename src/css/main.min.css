@@ -194,7 +194,17 @@ button::-moz-focus-inner {
 
 body {
   font-family: helvetica, "sans-serif";
-  -webkit-font-smoothing: antialiased; }
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6em; }
+
+.page-title {
+  font-size: 2em;
+  text-align: center; }
+
+.proof-declaration {
+  font-size: 1.6em;
+  color: #3b3939;
+  text-align: center; }
 
 .container {
   padding: 20px; }
@@ -218,10 +228,10 @@ body {
   position: relative;
   padding-left: 20px; }
 .proof-box__line-numbers {
-  width: 40px;
+  width: 20px;
   float: left; }
 .proof-box__line-contents {
-  width: calc(100% - 40px);
+  width: calc(100% - 20px);
   float: left; }
 .proof-box--assummed--closed {
   border: 1px solid #cccccc; }
@@ -237,14 +247,14 @@ body {
   margin: 10px 0; }
   .proof-line--prompted {
     padding: 0; }
+    .proof-line--prompted__line-number {
+      margin-top: 10px; }
     .proof-line--prompted__prompt {
       padding: 10px;
       float: left;
       width: 100%;
       cursor: pointer;
       text-align: center; }
-      .proof-line--prompted__prompt__line-number {
-        padding-top: 10px; }
       .proof-line--prompted__prompt--blur {
         background-color: #eeeeee;
         color: #b1b1b1; }
@@ -252,13 +262,9 @@ body {
         border-bottom: 2px solid #2d4452; }
   .proof-line__line-number {
     position: absolute;
-    left: 0; }
-    .proof-line__line-number--active {
-      border-radius: 10px;
-      background-color: #2d4452;
-      color: #f5f7f9;
-      padding: 5px 10px;
-      left: -10px; }
+    left: -1em;
+    width: 20px;
+    text-align: right; }
   .proof-line__equation {
     float: left; }
   .proof-line__rule {

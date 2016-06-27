@@ -4,17 +4,18 @@
 
   +modifier('prompted')
     padding: 0
+    +element('line-number')
+      margin-top: $line-prompt__padding
+
     +element('prompt')
-      +element('line-number')
-        padding-top: 10px
       padding: $unit
       float: left
       width: 100%
       cursor: pointer
       text-align: center
       +modifier('blur')
-        background-color: #eeeeee
-        color: #b1b1b1
+        background-color: $default__color--medium
+        color: $default__color--medium-contrast
       +modifier('focus')
         border-bottom: 2px solid $primary__color--dark
         // background-color: $primary__color--dark
@@ -22,14 +23,12 @@
 
   +element('line-number')
     position: absolute
-    left: 0
+    left: -1em
+    width: $line-number__width
+    text-align: right
 
     +modifier('active')
-      border-radius: 10px
-      background-color: $primary__color--dark
-      color: $primary__color--dark-contrast
-      padding: $unit/2 $unit
-      left: -$unit
+      // margin-top: $line-prompt__padding
 
   +element('equation')
     float: left
