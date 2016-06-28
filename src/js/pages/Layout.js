@@ -14,8 +14,6 @@ class Layout extends React.Component {
   constructor(props) {
     super(props);
 
-    window.actions = ProofActions;
-
     var premises = ['A∧B'];
     var conclusion = 'C';
     this.state = {
