@@ -7,12 +7,33 @@ import ProofBox from './../components/ProofBox'
 
 import Proof from './../classes/Proof'
 
-class Layout extends React.Component {
+import proofStore from './../stores/ProofStore'
+import * as ProofActions from './../actions/ProofActions'
 
-  render() {
+class Layout extends React.Component {
+  constructor(props) {
+    super(props);
+
+    window.actions = ProofActions;
+
     var premises = ['A∧B'];
     var conclusion = 'C';
+    this.state = {
+      premises,
+      conclusion,
+      proofState: proofStore.getProofState()
+    };
+  }
 
+  componentWillMount() {
+    proofStore.on('change', () => {
+      this.setState({
+        proofState: proofStore.getProofState()
+      });
+    });
+  }
+
+  render() {
     return (
       <div class="container container--centered container--medium container--spacey">
         <div class="grid">
@@ -22,8 +43,8 @@ class Layout extends React.Component {
 
         <div class="grid">
           <div class="col-2-3">
-            <ProofDeclaration premises={premises} conclusion={conclusion} />
-            <ProofBox proofState={Proof.createProof()}/>
+            <ProofDeclaration premises={this.state.premises} conclusion={this.state.conclusion} />
+            <ProofBox proofState={this.state.proofState}/>
           </div>
           <div class="col-1-3">
             {/* <ProofRules/>*/}
