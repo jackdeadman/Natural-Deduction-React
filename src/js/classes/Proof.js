@@ -33,29 +33,42 @@ class Proof {
       equation: 'avb',
       rule: 'Premise',
       isAssumption: () => false,
+      lineNumber: () => 1,
       children: [
           {
             equation: 'a',
-            rule: 'Premise',
+            rule: 'Assumption',
             isAssumption: () => true,
+            lineNumber: () => 2,
             children: [{
               equation: 'bva',
               rule: 'Conjuction Intro',
+              lineNumber: () => 3,
               isAssumption: () => false,
               children: []
             }]
           },
           {
             equation: 'b',
-            rule: 'Premise',
+            rule: 'Assumption',
+            lineNumber: () => 4,
             isAssumption: () => true,
             children: [{
               equation: 'bva',
               rule: 'Conjuction Intro',
+              lineNumber: () => 5,
               isAssumption: () => false,
               children: []
             }]
+          },
+          {
+            equation: 'bva',
+            rule: 'Disjuction elim',
+            isAssumption: () => false,
+            lineNumber: () => 6,
+            children: []
           }
+
       ]
     }
     window.proof = proof;

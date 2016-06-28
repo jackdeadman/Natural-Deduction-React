@@ -8,7 +8,7 @@ class ProofBox extends React.Component {
   static renderLines(lines) {
     return lines.map(line => {
       var remaining = [].concat(
-        <ProofLine lineNumber={1} rule={line.rule} equation={line.equation}/>,
+        <ProofLine lineNumber={line.lineNumber()} rule={line.rule} equation={line.equation}/>,
         ProofBox.renderLines(line.children)
       );
 
@@ -26,7 +26,7 @@ class ProofBox extends React.Component {
     return (
       <div class="proof-box proof-box--main">
         <ul class="proof-box__line-contents">
-          { ProofBox.renderLines(this.props.lines) }
+          { ProofBox.renderLines([this.props.proofState]) }
         </ul>
       </div>
     );

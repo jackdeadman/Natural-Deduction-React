@@ -23,7 +23,7 @@ class Layout extends React.Component {
         <div class="grid">
           <div class="col-2-3">
             <ProofDeclaration premises={premises} conclusion={conclusion} />
-            <ProofBox lines={[Proof.createProof()]}/>
+            <ProofBox proofState={Proof.createProof()}/>
           </div>
           <div class="col-1-3">
             {/* <ProofRules/>*/}
