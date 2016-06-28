@@ -30,58 +30,32 @@ class Proof {
 
   static createProof() {
     var proof = {
-      data: '1',
+      equation: 'avb',
       rule: 'Premise',
-      isAssumption: () => true,
+      isAssumption: () => false,
       children: [
-        {
-          data: '2',
-          rule: 'Assumption',
-          isAssumption: () => true,
-          children: [{
-            data: '3',
-            rule: 'Disjuction Intro Intro',
-            isAssumption: () => false,
-            children: [{
-              data: '4',
-              rule: 'Premise',
-              isAssumption: () => false,
-              children: [{
-                data: '5',
-                rule: 'Premise',
-                isAssumption: () => false,
-                children: []
-              }]
-            }]
-          }]
-        },
-        {
-        data: '6',
-        rule: 'Premise',
-        isAssumption: () => true,
-        children: [
           {
-            data: '7',
-            rule: 'Assumption',
+            equation: 'a',
+            rule: 'Premise',
             isAssumption: () => true,
             children: [{
-              data: '8',
-              rule: 'Disjuction Intro Intro',
-              isAssumption: () => true,
-              children: [{
-                data: '9',
-                rule: 'Premise',
-                isAssumption: () => false,
-                children: [{
-                  data: '10',
-                  rule: 'Premise',
-                  isAssumption: () => false,
-                  children: []
-                }]
-              }]
+              equation: 'bva',
+              rule: 'Conjuction Intro',
+              isAssumption: () => false,
+              children: []
             }]
-          }]
-        }
+          },
+          {
+            equation: 'b',
+            rule: 'Premise',
+            isAssumption: () => true,
+            children: [{
+              equation: 'bva',
+              rule: 'Conjuction Intro',
+              isAssumption: () => false,
+              children: []
+            }]
+          }
       ]
     }
     window.proof = proof;
