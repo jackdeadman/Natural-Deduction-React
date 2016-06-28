@@ -33,17 +33,17 @@ class Proof {
       equation: 'avb',
       rule: 'Premise',
       isAssumption: () => false,
-      lineNumber: () => 1,
+      lineNumber: 1,
       children: [
           {
             equation: 'a',
             rule: 'Assumption',
             isAssumption: () => true,
-            lineNumber: () => 2,
+            lineNumber: 2,
             children: [{
               equation: 'bva',
               rule: 'Conjuction Intro',
-              lineNumber: () => 3,
+              lineNumber: 3,
               isAssumption: () => false,
               children: []
             }]
@@ -51,12 +51,12 @@ class Proof {
           {
             equation: 'b',
             rule: 'Assumption',
-            lineNumber: () => 4,
+            lineNumber: 4,
             isAssumption: () => true,
             children: [{
               equation: 'bva',
               rule: 'Conjuction Intro',
-              lineNumber: () => 5,
+              lineNumber: 5,
               isAssumption: () => false,
               children: []
             }]
@@ -65,7 +65,7 @@ class Proof {
             equation: 'bva',
             rule: 'Disjuction elim',
             isAssumption: () => false,
-            lineNumber: () => 6,
+            lineNumber: 6,
             children: []
           }
 

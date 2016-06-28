@@ -1,5 +1,6 @@
 import React from 'react';
 import ProofLine from './ProofLine';
+import ProofPrompt from './ProofPrompt';
 import Proof from './../classes/Proof';
 
 class ProofBox extends React.Component {
@@ -7,14 +8,17 @@ class ProofBox extends React.Component {
   // a start of an assumption box
   static renderLines(lines) {
     return lines.map(line => {
+      // Recursively add prooflines
       var remaining = [].concat(
-        <ProofLine lineNumber={line.lineNumber()} rule={line.rule} equation={line.equation}/>,
+        <ProofLine { ...line }/>,
         ProofBox.renderLines(line.children)
       );
 
       if (line.isAssumption()) {
         return (
-          <AssummedProofBox>{ remaining }</AssummedProofBox>
+          [].concat(
+          <AssummedProofBox>{ remaining }</AssummedProofBox>,
+          <ProofPrompt lineNumber={7}/>)
         );
       } else {
         return remaining;
@@ -24,9 +28,10 @@ class ProofBox extends React.Component {
 
   render() {
     return (
-      <div class="proof-box proof-box--main">
+      <div class="proof-box proof-box--main" onClick={this.closeBox}>
         <ul class="proof-box__line-contents">
           { ProofBox.renderLines([this.props.proofState]) }
+          <ProofPrompt lineNumber={7}/>
         </ul>
       </div>
     );
@@ -34,9 +39,21 @@ class ProofBox extends React.Component {
 }
 
 class AssummedProofBox extends ProofBox {
+  constructor({open=true}) {
+    super();
+    this.state = { open };
+  }
+
+  closeBox() {
+    this.setState({
+      open: !this.state.open
+    });
+  }
+
   render() {
+    var className = this.state.open ? 'proof-box--assummed--open' : 'proof-box--assummed--closed'
     return (
-      <div class="proof-box proof-box--assummed proof-box--assummed--closed">
+      <div onClick={this.closeBox.bind(this)} class={"proof-box proof-box--assummed " + className}>
         <ul class="proof-box--assummed__line-contents">
           { this.props.children }
         </ul>
