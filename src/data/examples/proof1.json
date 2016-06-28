@@ -1,0 +1,46 @@
+{
+  "equation": "avb",
+  "rule": "Premise",
+  "isAssumption": "false",
+  "assumptionState": "null",
+  "lineNumber": "1",
+  "children": [
+    {
+      "equation": "a",
+      "rule": "Assumption",
+      "isAssumption": "true",
+      "assumptionState": "OPEN",
+      "lineNumber": "2",
+      "children": [{
+        "equation": "bva",
+        "rule": "Conjuction Intro",
+        "lineNumber": "3",
+        "isAssumption": "false",
+        "children": []
+      }]
+    },
+    {
+      "equation": "b",
+      "rule": "Assumption",
+      "lineNumber": "4",
+      "isAssumption": "true",
+      "assumptionState": "OPEN",
+      "children": [{
+        "equation": "bva",
+        "rule": "Conjuction Intro",
+        "lineNumber": "5",
+        "isAssumption": "false",
+        "children": []
+      }]
+    },
+    {
+      "equation": "bva",
+      "rule": "Disjuction elim",
+      "isAssumption": "false",
+      "assumptionState": "null",
+      "lineNumber": "6",
+      "children": []
+    }
+
+]
+};
