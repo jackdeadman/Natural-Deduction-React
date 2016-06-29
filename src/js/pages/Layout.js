@@ -6,15 +6,16 @@ import ProofDeclaration from './layout/ProofDeclaration'
 import ProofBox from './../components/ProofBox'
 
 import proofStore from './../stores/ProofStore'
-import * as ProofActions from './../actions/ProofActions'
+import * as proofActions from './../actions/ProofActions'
 
-import ProofTree from './../classes/Proof/ProofTree'
+import ConjunctionIntroduction from './../classes/Proof/Rule/ConjunctionIntroduction'
 
 class Layout extends React.Component {
   constructor(props) {
     super(props);
-    var premises = ['A∧B'];
+    var premises = ['A→C','B→C','A∨B'];
     var conclusion = 'C';
+
     this.state = {
       premises,
       conclusion,
@@ -28,6 +29,10 @@ class Layout extends React.Component {
         proofState: proofStore.getProofState()
       });
     });
+  }
+
+  applyRule() {
+    proofActions.applyRule(ConjunctionIntroduction, 1, proofStore.getProofState().lastNumber());
   }
 
   render() {
@@ -47,6 +52,7 @@ class Layout extends React.Component {
             {/* <ProofRules/>*/}
           </div>
         </div>
+        <button onClick={this.applyRule.bind(this)} class="button button--dark">Apply Rule</button>
       </div>
     );
   }

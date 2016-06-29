@@ -1,11 +1,11 @@
 import { EventEmitter } from 'events';
 import dispatcher from '../dispatcher'
-import ProofTree from '../classes/Proof/ProofTree'
+import ProofTreeFactory from '../classes/Proof/ProofTreeFactory'
 
 class ProofStore extends EventEmitter {
   constructor() {
     super();
-    this.proofState = ProofTree.createNew(['a','b','a^b']);
+    this.proofState = ProofTreeFactory.createNew(['A→C','B→C','A∨B']);
 
   }
 
@@ -18,10 +18,16 @@ class ProofStore extends EventEmitter {
     this.emit('change');
   }
 
+  applyRule(rule, lines) {
+    this.proofState = rule.apply(this.proofState, lines);
+    this.emit('change');
+  }
+
   handleActions(action) {
+    console.log('Action:', action);
     switch (action.type) {
       case 'APPLY_RULE':
-        console.log('Applying rule:', action);
+        this.applyRule(action.rule, action.lines);
         break;
     }
   }

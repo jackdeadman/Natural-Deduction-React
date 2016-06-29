@@ -1,42 +1,11 @@
 // Structure to represent a proof
 class ProofTree {
 
-  static createPremise(equation) {
-    return new ProofTree({
-      equation,
-      rule: 'Premise'
-    });
-  }
-
-  static createAssumption(equation) {
-    return new ProofTree({
-      equation,
-      rule: 'Assumption',
-      newScope: true
-    });
-  }
-
   constructor({equation, rule, newScope=false }) {
     this.equation = equation;
     this.rule = rule;
     this.newScope = newScope;
     this.children = [];
-  }
-
-  static createNew(premises) {
-    var first = new ProofTree({});
-    var previous = null;
-    premises.forEach(prem => {
-      var line = ProofTree.createPremise(prem);
-      line.parent = previous;
-      if (line.parent === null) {
-        first = line;
-      } else {
-        line.parent.children = [line];
-      }
-      previous = line;
-    });
-    return first;
   }
 
   isAssumption() {
@@ -93,6 +62,7 @@ class ProofTree {
     });
     return total;
   }
+
 }
 
 export default ProofTree;
