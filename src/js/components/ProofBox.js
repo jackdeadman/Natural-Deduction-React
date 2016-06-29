@@ -1,7 +1,6 @@
 import React from 'react';
 import ProofLine from './ProofLine';
 import ProofPrompt from './ProofPrompt';
-import Proof from './../classes/Proof';
 
 class ProofBox extends React.Component {
   // A proofbox line can be a normal line or
@@ -10,7 +9,7 @@ class ProofBox extends React.Component {
     return lines.map(line => {
       // Recursively add prooflines
       var remaining = [].concat(
-        <ProofLine { ...line }/>,
+        <ProofLine lineNumber={line.lineNumber()} { ...line }/>,
         ProofBox.renderLines(line.children)
       );
 
@@ -18,7 +17,7 @@ class ProofBox extends React.Component {
         return (
           [].concat(
           <AssummedProofBox>{ remaining }</AssummedProofBox>,
-          <ProofPrompt lineNumber={7}/>)
+          <ProofPrompt lineNumber={1+line.lastNumber()}/>)
         );
       } else {
         return remaining;
@@ -31,7 +30,7 @@ class ProofBox extends React.Component {
       <div class="proof-box proof-box--main" onClick={this.closeBox}>
         <ul class="proof-box__line-contents">
           { ProofBox.renderLines([this.props.proofState]) }
-          <ProofPrompt lineNumber={7}/>
+          <ProofPrompt lineNumber={1+this.props.proofState.lastNumber()}/>
         </ul>
       </div>
     );

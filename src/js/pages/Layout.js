@@ -5,15 +5,14 @@ import Controls from './layout/Controls'
 import ProofDeclaration from './layout/ProofDeclaration'
 import ProofBox from './../components/ProofBox'
 
-import Proof from './../classes/Proof'
-
 import proofStore from './../stores/ProofStore'
 import * as ProofActions from './../actions/ProofActions'
+
+import ProofTree from './../classes/Proof/ProofTree'
 
 class Layout extends React.Component {
   constructor(props) {
     super(props);
-
     var premises = ['A∧B'];
     var conclusion = 'C';
     this.state = {
