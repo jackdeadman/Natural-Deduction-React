@@ -8,7 +8,7 @@ import ProofBox from './../components/ProofBox'
 import proofStore from './../stores/ProofStore'
 import * as proofActions from './../actions/ProofActions'
 
-import ImplicationIntroduction from './../classes/Proof/Rule/ImplicationIntroduction'
+import ConjunctionIntroduction from './../classes/Proof/Rule/ConjunctionIntroduction'
 
 class Layout extends React.Component {
   constructor(props) {
@@ -21,6 +21,8 @@ class Layout extends React.Component {
       conclusion,
       proofState: proofStore.getProofState()
     };
+    window.con = ConjunctionIntroduction;
+    window.state = proofStore.getProofState();
   }
 
   componentWillMount() {

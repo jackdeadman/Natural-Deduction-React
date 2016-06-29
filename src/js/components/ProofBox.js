@@ -15,9 +15,10 @@ class ProofBox extends React.Component {
 
       if (line.isAssumption()) {
         return (
-          [].concat(
-          <AssummedProofBox>{ remaining }</AssummedProofBox>,
-          <ProofPrompt lineNumber={1}/>)
+          <AssummedProofBox>
+            {remaining}
+            <ProofPrompt lineNumber={1}/>
+          </AssummedProofBox>
         );
       } else {
         return remaining;

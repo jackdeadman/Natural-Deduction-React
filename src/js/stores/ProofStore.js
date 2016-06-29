@@ -1,25 +1,58 @@
 import { EventEmitter } from 'events';
 import dispatcher from '../dispatcher'
 import ProofTreeFactory from '../classes/Proof/ProofTreeFactory'
+import ProofTree from '../classes/Proof/ProofTree'
+import ConjunctionIntroduction from '../classes/Proof/Rule/ConjunctionIntroduction'
 
 class ProofStore extends EventEmitter {
   constructor() {
     super();
-    this.proofState = ProofTreeFactory.createNew(['A→C','B→C','A∨B']);
-    var rule1 = ProofTreeFactory.createNew(['1→2','3→4','5∨6']);
-    rule1.newScope = true;
-    rule1.parent = this.proofState.last();
-    this.proofState.children.push(
-      rule1
-    );
+    var ps;
+    this.proofState = ps = ProofTreeFactory.createNew(['A→C','B→C','A∨B']);
+    ps.scope(1).addLineNewScope(ProofTreeFactory.createAssumption('B'));
+    ps.scope(3).addLineNewScope(ProofTreeFactory.createAssumption('F'));
+    ps.scope(4).addLine(new ProofTree({
+      equation: 'A→D',
+      rule: 'Made up rule'
+    }));
 
-    var rule2 = ProofTreeFactory.createNew(['1→2','3→4','5∨6']);
-    rule2.newScope = true;
-    rule2.parent = this.proofState.last();
-    this.proofState.children.push(
-      rule2
-    );
-    console.log(this.proofState);
+    ps.scope(5).addLine(new ProofTree({
+      equation: 'A→D',
+      rule: 'Another Made up rule'
+    }));
+
+    ps.scope(6).addLineNewScope(new ProofTree({
+      equation: 'A→D',
+      rule: 'Another Made up rule'
+    }));
+
+    ps.scope(4).addLine(new ProofTree({
+      equation: 'A→D',
+      rule: 'Third Made up rule'
+    }));
+
+    // if (this.proofState.line(4).inScope(1)) {
+    //   var line1 = this.proofState.line(1);
+    //   var line2 = this.proofState.line(2);
+    //   var equation = ConjunctionIntroduction.apply(line1.equation, line2.equation);
+    //   this.proofState.line(4).addLine({
+    //     equation,
+    //     rule: 'Conjunction Introduction'
+    //   });
+    // }
+    //
+    // if (this.proofState.line(6).inScope(1)) {
+    //   var line1 = this.proofState.line(1);
+    //   var line2 = this.proofState.line(4);
+    //   var equation = ConjunctionIntroduction.apply(line1.equation, line2.equation);
+    //   this.proofState.line(6).addLine({
+    //     equation,
+    //     rule: 'Conjunction Introduction'
+    //   });
+    // } else {
+    //   console.log('Rule cant be applied');
+    // }
+
   }
 
   getProofState() {
