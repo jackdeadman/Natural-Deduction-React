@@ -33,7 +33,7 @@ class Layout extends React.Component {
   }
 
   applyRule() {
-    proofActions.applyRule(ImplicationIntroduction, 1);
+    proofActions.applyRule(ImplicationIntroduction, 4);
     // proofActions.applyRule(ImplicationIntroduction, 1, proofStore.getProofState().lastNumber());
   }
 

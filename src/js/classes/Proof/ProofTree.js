@@ -49,14 +49,11 @@ class ProofTree {
   }
 
   line(lineNumber) {
-    var total = 1;
     var line = null;
+    var count = 1;
     this.walk(child => {
-      if (lineNumber === total) {
-        line = child;
-        return true;
-      }
-      total += 1;
+      if (lineNumber === count) line = child;
+      count ++;
     })
     return line;
   }

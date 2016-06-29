@@ -6,17 +6,21 @@ import ProofTree from '../ProofTree'
 
 class ImplicationIntroduction extends Rule {
   apply(state, [line]) {
+    var line = state.line(line);
     if (line.newScope) {
       var operator = new Expression(LogicOperatorSet.IMPLIES);
-      var last = line.last();
-      line.children = [];
-      operator.left = line;
-      operator.right = last;
+      console.log(line);
+      var leftExpr = logicExpressionParser.parse(line.equation);
+      var rightExpr = logicExpressionParser.parse(line.last().equation);
+
+      operator.left = leftExpr;
+      operator.right = rightExpr;
 
       state.children.push(new ProofTree({
         equation: operator.toString(),
         rule: 'Implication Introduction'
       }));
+      console.log(operator);
       return state;
     }
   }
