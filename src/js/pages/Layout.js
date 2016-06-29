@@ -8,14 +8,14 @@ import ProofBox from './../components/ProofBox'
 import proofStore from './../stores/ProofStore'
 import * as proofActions from './../actions/ProofActions'
 
-import ConjunctionIntroduction from './../classes/Proof/Rule/ConjunctionIntroduction'
+import ImplicationIntroduction from './../classes/Proof/Rule/ImplicationIntroduction'
 
 class Layout extends React.Component {
   constructor(props) {
     super(props);
     var premises = ['A→C','B→C','A∨B'];
     var conclusion = 'C';
-
+    proofStore.getProofState().setLines();
     this.state = {
       premises,
       conclusion,
@@ -25,6 +25,7 @@ class Layout extends React.Component {
 
   componentWillMount() {
     proofStore.on('change', () => {
+      proofStore.getProofState().setLines();
       this.setState({
         proofState: proofStore.getProofState()
       });
@@ -32,7 +33,8 @@ class Layout extends React.Component {
   }
 
   applyRule() {
-    proofActions.applyRule(ConjunctionIntroduction, 1, proofStore.getProofState().lastNumber());
+    proofActions.applyRule(ImplicationIntroduction, 1);
+    // proofActions.applyRule(ImplicationIntroduction, 1, proofStore.getProofState().lastNumber());
   }
 
   render() {

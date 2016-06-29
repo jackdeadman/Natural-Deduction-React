@@ -6,14 +6,14 @@ import ProofTree from '../ProofTree'
 
 class ConjunctionIntroduction extends Rule {
   apply(state, [line1, line2]) {
-    var root = new Expression(LogicOperatorSet.AND);
-    var tree1 = logicExpressionParser.parse(state.line(line1).equation);
-    var tree2 = logicExpressionParser.parse(state.line(line2).equation);
+    var operator = new Expression(LogicOperatorSet.AND);
+    var leftExpr = logicExpressionParser.parse(state.line(line1).equation);
+    var rightExpr = logicExpressionParser.parse(state.line(line2).equation);
 
-    root.left = tree1;
-    root.right = tree2;
+    operator.left = leftExpr;
+    operator.right = rightExpr;
     state.children.push(new ProofTree({
-      equation: root.toString(),
+      equation: operator.toString(),
       rule: 'Conjuction Introduction'
     }));
 

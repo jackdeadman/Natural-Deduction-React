@@ -27,8 +27,7 @@ class ProofPrompt extends React.Component {
     } else {
       return (
         <li class="proof-line proof-line--prompted">
-          <div class="proof-line__line-number proof-line--prompted__line-number">{this.props.lineNumber}</div>
-          <div onClick={this.focus.bind(this)} class="proof-line--prompted__prompt proof-line--prompted__prompt--blur">Click to continue from line {this.props.lineNumber}</div>
+          <div onClick={this.focus.bind(this)} class="proof-line--prompted__prompt proof-line--prompted__prompt--blur">Click to continue from here</div>
         </li>
       )
     }
