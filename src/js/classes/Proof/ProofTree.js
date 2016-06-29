@@ -7,6 +7,7 @@ class ProofTree {
     this.newScope = newScope;
     this.parent = null;
     this.children = [];
+    this.isSound = !newScope;
   }
 
   isAssumption() {

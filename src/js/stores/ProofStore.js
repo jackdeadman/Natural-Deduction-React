@@ -31,6 +31,9 @@ class ProofStore extends EventEmitter {
       rule: 'Third Made up rule'
     }));
 
+    ps.line(7).isSound = true;
+    // ps.line(4).isSound = true;
+
     // if (this.proofState.line(4).inScope(1)) {
     //   var line1 = this.proofState.line(1);
     //   var line2 = this.proofState.line(2);

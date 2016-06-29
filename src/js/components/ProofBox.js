@@ -14,10 +14,11 @@ class ProofBox extends React.Component {
       );
 
       if (line.isAssumption()) {
+        var prompt = line.isSound ? null : <ProofPrompt/>;
         return (
-          <AssummedProofBox>
+          <AssummedProofBox closed={line.isSound}>
             {remaining}
-            <ProofPrompt lineNumber={1}/>
+            {prompt}
           </AssummedProofBox>
         );
       } else {
@@ -39,21 +40,10 @@ class ProofBox extends React.Component {
 }
 
 class AssummedProofBox extends ProofBox {
-  constructor({open=true}) {
-    super();
-    this.state = { open };
-  }
-
-  closeBox() {
-    this.setState({
-      open: !this.state.open
-    });
-  }
-
   render() {
-    var className = this.state.open ? 'proof-box--assummed--open' : 'proof-box--assummed--closed'
+    var className = this.props.closed ? 'proof-box--assummed--closed' : 'proof-box--assummed--open'
     return (
-      <div onClick={this.closeBox.bind(this)} class={"proof-box proof-box--assummed " + className}>
+      <div class={"proof-box proof-box--assummed " + className}>
         <ul class="proof-box--assummed__line-contents">
           { this.props.children }
         </ul>
