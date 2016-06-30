@@ -8,37 +8,49 @@ import ImplicationElimination from '../classes/Proof/Rule/ImplicationElimination
 import DoubleNegationIntroduction from '../classes/Proof/Rule/DoubleNegationIntroduction'
 import ConjunctionIntroduction1 from '../classes/Proof/Rule/ConjunctionElimination1'
 import ConjunctionIntroduction2 from '../classes/Proof/Rule/ConjunctionElimination2'
+import DisjunctionElimination from '../classes/Proof/Rule/DisjunctionElimination'
 
 class ProofStore extends EventEmitter {
   constructor() {
     super();
     var ps;
-    this.proofState = ps = ProofTreeFactory.createNew(['A→C','B→C','A']);
+    this.proofState = ps = ProofTreeFactory.createNew(['A→C','B→C','A∨B']);
     ps.scope(3).addLineNewScope(ProofTreeFactory.createAssumption('A'));
     ps.scope(3).addLineNewScope(ProofTreeFactory.createAssumption('B'));
-    ps.scope(4).addLine(new ProofTree({
-      equation: 'C',
-      rule: 'Implication Elimination'
-    }));
     ps.setLines();
-    ConjunctionIntroduction.applyRuleToProof(ps, 3, [1,2]);
+    ImplicationElimination.applyRuleToProof(ps,4,[1,4]);
     ps.setLines();
-    ImplicationIntroduction.applyRuleToProof(ps, 3, [4]);
+    ImplicationElimination.applyRuleToProof(ps,6,[2,6]);
+    ps.setLines();
+    DisjunctionElimination.applyRuleToProof(ps,3,[3,[4,6]]);
+    ps.setLines();
+    ps.scope(3).addLineNewScope(ProofTreeFactory.createAssumption('B'));
+    ps.setLines();
+    ImplicationIntroduction.applyRuleToProof(ps, 9, [9]);
 
-    ps.setLines();
-    ImplicationIntroduction.applyRuleToProof(ps, 7, [7]);
-
-    ps.setLines();
-    ImplicationElimination.applyRuleToProof(ps, 4, [1,3]);
-
-    ps.setLines();
-    DoubleNegationIntroduction.applyRuleToProof(ps, 10, [10]);
-
-    ps.setLines();
-    ConjunctionIntroduction1.applyRuleToProof(ps, 9, [9]);
-
-    ps.setLines();
-    ConjunctionIntroduction2.applyRuleToProof(ps, 9, [9]);
+    // ps.scope(4).addLine(new ProofTree({
+    //   equation: 'C',
+    //   rule: 'Implication Elimination'
+    // }));
+    // ps.setLines();
+    // ConjunctionIntroduction.applyRuleToProof(ps, 3, [1,2]);
+    // ps.setLines();
+    // ImplicationIntroduction.applyRuleToProof(ps, 3, [4]);
+    //
+    // ps.setLines();
+    // ImplicationIntroduction.applyRuleToProof(ps, 7, [7]);
+    //
+    // ps.setLines();
+    // ImplicationElimination.applyRuleToProof(ps, 4, [1,3]);
+    //
+    // ps.setLines();
+    // DoubleNegationIntroduction.applyRuleToProof(ps, 10, [10]);
+    //
+    // ps.setLines();
+    // ConjunctionIntroduction1.applyRuleToProof(ps, 9, [9]);
+    //
+    // ps.setLines();
+    // ConjunctionIntroduction2.applyRuleToProof(ps, 9, [9]);
 
   }
 

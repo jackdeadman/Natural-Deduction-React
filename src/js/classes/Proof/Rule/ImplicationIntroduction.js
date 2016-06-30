@@ -17,32 +17,20 @@ class ImplicationIntroduction extends Rule {
     return state.line(lineNumber).isAssumption();
   }
 
-  applyRuleToProof(proof, endpoint, lines) {
-    super.applyRuleToProof(proof, endpoint, lines);
-    var line1 = proof.line(lines[0]);
+  applyRuleToProof(proof, endpoint, [lineNumber1]) {
+    super.applyRuleToProof(proof, endpoint, [lineNumber1]);
+    var line1 = proof.line(lineNumber1);
     var line2 = line1.last();
 
     var equation = this.applyRule(line1.equation, line2.equation);
 
-    var newLine = new ProofTree({
+    proof.line(endpoint).addLine(new ProofTree({
       rule: this.toString([line1.lineNumber, line2.lineNumber]),
       equation
-    });
+    }));
 
-    var index = 0;
-    line1.parent.children.some(child =>{
-      if (line1.lineNumber === child.lineNumber) {
-        return true;
-      }
-      index++;
-    });
+    line1.closeBox();
 
-    if (index >= 0) {
-      var newParent = line1.parent;
-      line1.closeBox();
-      newParent.children.splice(index+1, 0, newLine);
-      newLine.parent = newParent
-    }
   }
 
   toString([line1, line2]) {
