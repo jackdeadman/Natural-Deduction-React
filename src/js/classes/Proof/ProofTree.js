@@ -38,15 +38,15 @@ class ProofTree {
 
   last() {
     if (this.children.length === 0) return this;
+    var last = this;
 
-    var index = -1;
     this.children.forEach(child => {
-      if (!child.isAssumption()) index++;
+      if (!child.isAssumption()) {
+        last = child.last();
+      }
     });
 
-    if (index < 0) return this;
-
-    return this.children[index].last();
+    return last;
   }
 
   setLines() {
@@ -62,7 +62,7 @@ class ProofTree {
     return this.parent.root();
   }
 
-  inScope(target, context=this.root()) {
+  inScope(target) {
     if (this.lineNumber === target) {
       return true;
     } else {
@@ -97,7 +97,7 @@ class ProofTree {
       newScope
     });
     line.parent = this.last();
-    this.last().children.push(line);
+    line.parent.children.push(line);
   }
 
   addLineNewScope({equation, rule}) {

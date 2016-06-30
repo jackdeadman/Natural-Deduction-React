@@ -9,52 +9,17 @@ class ProofStore extends EventEmitter {
     super();
     var ps;
     this.proofState = ps = ProofTreeFactory.createNew(['A→C','B→C','A∨B']);
-    ps.scope(1).addLineNewScope(ProofTreeFactory.createAssumption('B'));
-    ps.scope(3).addLineNewScope(ProofTreeFactory.createAssumption('F'));
+    ps.scope(3).addLineNewScope(ProofTreeFactory.createAssumption('A'));
+    ps.scope(3).addLineNewScope(ProofTreeFactory.createAssumption('B'));
     ps.scope(4).addLine(new ProofTree({
-      equation: 'A→D',
-      rule: 'Made up rule'
+      equation: 'C',
+      rule: 'Implication Elimination'
     }));
-
-    ps.scope(5).addLine(new ProofTree({
-      equation: 'A→D',
-      rule: 'Another Made up rule'
-    }));
-
-    ps.scope(6).addLineNewScope(new ProofTree({
-      equation: 'A→D',
-      rule: 'Another Made up rule'
-    }));
-
-    ps.scope(4).addLine(new ProofTree({
-      equation: 'A→D',
-      rule: 'Third Made up rule'
-    }));
-
-    ps.line(7).isSound = true;
-    // ps.line(4).isSound = true;
-
-    // if (this.proofState.line(4).inScope(1)) {
-    //   var line1 = this.proofState.line(1);
-    //   var line2 = this.proofState.line(2);
-    //   var equation = ConjunctionIntroduction.apply(line1.equation, line2.equation);
-    //   this.proofState.line(4).addLine({
-    //     equation,
-    //     rule: 'Conjunction Introduction'
-    //   });
-    // }
-    //
-    // if (this.proofState.line(6).inScope(1)) {
-    //   var line1 = this.proofState.line(1);
-    //   var line2 = this.proofState.line(4);
-    //   var equation = ConjunctionIntroduction.apply(line1.equation, line2.equation);
-    //   this.proofState.line(6).addLine({
-    //     equation,
-    //     rule: 'Conjunction Introduction'
-    //   });
-    // } else {
-    //   console.log('Rule cant be applied');
-    // }
+    ps.scope(3).addLineNewScope(ProofTreeFactory.createAssumption('C'));
+    ps.setLines();
+    ConjunctionIntroduction.applyRuleToProof(ps, 3, [1,2]);
+    ps.scope(8).addLineNewScope(ProofTreeFactory.createAssumption('B'));
+    ConjunctionIntroduction.applyRuleToProof(ps, 3, [1,3]);
 
   }
 
