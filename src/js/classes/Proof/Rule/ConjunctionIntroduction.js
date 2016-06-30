@@ -10,7 +10,7 @@ class ConjunctionIntroduction extends Rule {
     operator.left = logicExpressionParser.parse(leftExpr);
     operator.right = logicExpressionParser.parse(rightExpr);
 
-    return operator.toString();
+    return operator;
   }
 
   conditions(state, endpoint, lines) {
@@ -21,18 +21,18 @@ class ConjunctionIntroduction extends Rule {
   }
 
   applyRuleToProof(proof, endpoint, lines) {
-    if (this.conditions(proof, endpoint, lines)) {
-      var line1 = proof.line(lines[0]);
-      var line2 = proof.line(lines[1]);
-      var equation = this.applyRule(line1.equation, line2.equation);
-      proof.addLine({
-        rule: 'Conjunction Introduction',
-        equation
-      });
-    } else {
-      // throw new Error('Conditions not met to apply rule');
-      console.log('Error');
-    }
+    super.applyRuleToProof(proof, endpoint, lines);
+    var line1 = proof.line(lines[0]);
+    var line2 = proof.line(lines[1]);
+    var equation = this.applyRule(line1.equation, line2.equation);
+    proof.addLine({
+      rule: this,
+      equation
+    });
+  }
+
+  toString() {
+    return 'Conjunction Introduction';
   }
 }
 

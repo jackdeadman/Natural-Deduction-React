@@ -19,7 +19,8 @@ class ProofStore extends EventEmitter {
     ps.setLines();
     ConjunctionIntroduction.applyRuleToProof(ps, 3, [1,2]);
     ps.scope(8).addLineNewScope(ProofTreeFactory.createAssumption('B'));
-    ConjunctionIntroduction.applyRuleToProof(ps, 3, [1,3]);
+    ps.setLines();
+    ConjunctionIntroduction.applyRuleToProof(ps, 8, [1,3]);
 
   }
 
@@ -38,7 +39,6 @@ class ProofStore extends EventEmitter {
   }
 
   handleActions(action) {
-    console.log('Action:', action);
     switch (action.type) {
       case 'APPLY_RULE':
         this.applyRule(action.rule, action.lines);

@@ -16,8 +16,8 @@ class ProofLine extends React.Component {
     return(
       <li class='proof-line'>
         <div class='proof-line__line-number'>{ this.state.lineNumber }</div>
-        <div class='proof-line__equation'>{ this.state.equation }</div>
-        <div class='proof-line__rule'>{ this.state.rule }</div>
+        <div class='proof-line__equation'>{ this.state.equation.toString() }</div>
+        <div class='proof-line__rule'>{ this.state.rule.toString() }</div>
       </li>
     );
   }
