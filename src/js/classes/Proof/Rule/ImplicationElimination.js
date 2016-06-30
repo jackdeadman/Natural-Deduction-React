@@ -7,8 +7,6 @@ import ProofTree from '../ProofTree'
 class ImplicationElimination extends Rule {
   applyRule(leftExpr, rightExpr) {
     var leftExpr = logicExpressionParser.parse(leftExpr);
-    var rightExpr = logicExpressionParser.parse(rightExpr);
-
     return leftExpr.right.toString();
   }
 

@@ -6,6 +6,8 @@ import ConjunctionIntroduction from '../classes/Proof/Rule/ConjunctionIntroducti
 import ImplicationIntroduction from '../classes/Proof/Rule/ImplicationIntroduction'
 import ImplicationElimination from '../classes/Proof/Rule/ImplicationElimination'
 import DoubleNegationIntroduction from '../classes/Proof/Rule/DoubleNegationIntroduction'
+import ConjunctionIntroduction1 from '../classes/Proof/Rule/ConjunctionElimination1'
+import ConjunctionIntroduction2 from '../classes/Proof/Rule/ConjunctionElimination2'
 
 class ProofStore extends EventEmitter {
   constructor() {
@@ -31,6 +33,12 @@ class ProofStore extends EventEmitter {
 
     ps.setLines();
     DoubleNegationIntroduction.applyRuleToProof(ps, 10, [10]);
+
+    ps.setLines();
+    ConjunctionIntroduction1.applyRuleToProof(ps, 9, [9]);
+
+    ps.setLines();
+    ConjunctionIntroduction2.applyRuleToProof(ps, 9, [9]);
 
   }
 
