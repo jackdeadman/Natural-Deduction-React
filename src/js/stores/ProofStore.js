@@ -13,6 +13,7 @@ import DisjunctionElimination from '../classes/Proof/Rule/DisjunctionElimination
 import DisjunctionIntroduction from '../classes/Proof/Rule/DisjunctionIntroduction'
 import BottomElimination from '../classes/Proof/Rule/BottomElimination'
 import NegationElimination from '../classes/Proof/Rule/NegationElimination'
+import NegationIntroduction from '../classes/Proof/Rule/NegationIntroduction'
 
 import parser from '../classes/Parse/LogicExpressionParser'
 
@@ -23,6 +24,9 @@ class ProofStore extends EventEmitter {
     var ps;
     this.proofState = ps = ProofTreeFactory.createNew(['A→C','D', '¬D']);
     NegationElimination.applyRuleToProof(ps, 1,[2,3]);
+    ps.scope(3).addLineNewScope(ProofTreeFactory.createAssumption('B'));
+    NegationElimination.applyRuleToProof(ps, 5, [2,3]);
+    NegationIntroduction.applyRuleToProof(ps, 4, [5]);
   }
 
   getProofState() {
