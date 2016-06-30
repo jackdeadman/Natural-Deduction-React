@@ -5,7 +5,7 @@ import Rule from './Rule'
 import ProofTree from '../ProofTree'
 
 class NegationElimination extends Rule {
-  applyRule(expr) {
+  applyRule() {
     return LogicOperatorSet.CONTRADICTION.symbol;
   }
 
@@ -25,16 +25,16 @@ class NegationElimination extends Rule {
             && Expression.equals(nottedVersion, expr2);
   }
 
-  applyRuleToProof(proof, endpoint, [line]) {
-    var equation = this.applyRule(proof.line(line).equation);
+  applyRuleToProof(proof, endpoint, [line1, line2]) {
+    var equation = this.applyRule();
     proof.line(endpoint).addLine(new ProofTree({
-      rule: this.toString([line]),
+      rule: this.toString([line1, line2]),
       equation
     }));
   }
 
-  toString([line1]) {
-    return `Double Negation Elimination ${line1}`;
+  toString([line1, line2]) {
+    return `Negation Elimination ${line1}, ${line2}`;
   }
 }
 
