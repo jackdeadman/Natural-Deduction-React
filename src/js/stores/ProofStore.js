@@ -11,11 +11,14 @@ import ConjunctionIntroduction1 from '../classes/Proof/Rule/ConjunctionEliminati
 import ConjunctionIntroduction2 from '../classes/Proof/Rule/ConjunctionElimination2'
 import DisjunctionElimination from '../classes/Proof/Rule/DisjunctionElimination'
 
+import parser from '../classes/Parse/LogicExpressionParser'
+
 class ProofStore extends EventEmitter {
   constructor() {
     super();
+    window.parser = parser;
     var ps;
-    this.proofState = ps = ProofTreeFactory.createNew(['A→C','B→C','A∨B']);
+    this.proofState = ps = ProofTreeFactory.createNew(['A→C','B→C','A∨B', '⊥']);
     ps.scope(3).addLineNewScope(ProofTreeFactory.createAssumption('A'));
 
     ps.scope(3).addLineNewScope(ProofTreeFactory.createAssumption('B'));

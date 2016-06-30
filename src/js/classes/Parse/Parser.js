@@ -23,7 +23,10 @@ class Parser {
   _applyOperator(operatorStack, exprStack) {
     var operator = operatorStack.pop();
 
-    if (operator.arity === 1){
+    if (operator.arity === 0) {
+      exprStack.push(new Expression(operator));
+    }
+    else if (operator.arity === 1){
         var rightExpr = exprStack.pop();
         // if (!rightExpr) throw "Invalid number of arguments for " + operator.symbol + " expected 1, 0 given.";
 

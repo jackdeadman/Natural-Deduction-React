@@ -27,6 +27,12 @@ class LogicOperatorSet extends OperatorSet {
         symbol: "¬",
         precedence: 3,
         arity: 1
+      }),
+      new Operator({
+        name: 'contradiction',
+        symbol: '⊥',
+        precedence: 4,
+        arity: 0
       })
     ];
     super(operators);
