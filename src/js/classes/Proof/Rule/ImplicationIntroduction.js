@@ -28,13 +28,13 @@ class ImplicationIntroduction extends Rule {
     });
 
     line1.closeBox();
-    proof.line(endpoint).parent.parent.children.push(newLine);
+    proof.line(endpoint).parent.children.push(newLine);
     newLine.parent = line1.parent;
-    // proof.line(endpoint).parent.addLine(newLine);
+    proof.setLines();
   }
 
   toString([line1, line2]) {
-    return `Implication Introduction ${line1}-${line2}`;
+    return `Implication Introduction`;
   }
 }
 

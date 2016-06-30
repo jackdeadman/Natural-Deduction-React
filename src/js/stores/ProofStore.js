@@ -18,19 +18,24 @@ class ProofStore extends EventEmitter {
     super();
     window.parser = parser;
     var ps;
-    this.proofState = ps = ProofTreeFactory.createNew(['A→C','B→C','A∨B', '⊥']);
+    this.proofState = ps = ProofTreeFactory.createNew(['A→C','B→C','A∨B','⊥']);
     ps.scope(3).addLineNewScope(ProofTreeFactory.createAssumption('A'));
 
     ps.scope(3).addLineNewScope(ProofTreeFactory.createAssumption('B'));
-      ImplicationElimination.applyRuleToProof(ps,4,[1,4]);
-      ImplicationElimination.applyRuleToProof(ps,6,[2,6]);
-      DisjunctionElimination.applyRuleToProof(ps,3,[3,[4,6]]);
+      ImplicationElimination.applyRuleToProof(ps,5,[1,5]);
+      ImplicationElimination.applyRuleToProof(ps,7,[2,7]);
+      // ps.scope(7).addLineNewScope(ProofTreeFactory.createAssumption('A'));
+      // ImplicationIntroduction.applyRuleToProof(ps, 7, [7]);
+      // DisjunctionElimination.applyRuleToProof(ps,3,[3,[5,7]]);
 
-    ps.scope(3).addLineNewScope(ProofTreeFactory.createAssumption('B'));
-      ConjunctionIntroduction.applyRuleToProof(ps, 9, [8,9]);
-    ImplicationIntroduction.applyRuleToProof(ps, 9, [9]);
-    DoubleNegationIntroduction.applyRuleToProof(ps, 11, [11]);
-    DoubleNegationElimination.applyRuleToProof(ps, 12, [12]);
+    // ps.scope(9).addLineNewScope(ProofTreeFactory.createAssumption('A'));
+    // ImplicationIntroduction.applyRuleToProof(ps, 10, [10]);
+
+    // ps.scope(3).addLineNewScope(ProofTreeFactory.createAssumption('B'));
+    //   ConjunctionIntroduction.applyRuleToProof(ps, 9, [8,9]);
+    // ImplicationIntroduction.applyRuleToProof(ps, 9, [9]);
+    // DoubleNegationIntroduction.applyRuleToProof(ps, 11, [11]);
+    // DoubleNegationElimination.applyRuleToProof(ps, 12, [12]);
 
 
     // ps.scope(4).addLine(new ProofTree({

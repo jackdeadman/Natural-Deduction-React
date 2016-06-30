@@ -14,20 +14,25 @@ class DisjunctionElimination extends Rule {
     var assline2 = state.line(assummedlines[1]);
     var line1 = state.line(line1);
 
+    console.log(assline1.last(), assline2.last());
+
     var correctOperator = logicExpressionParser.parse(line1.equation).value === LogicOperatorSet.OR;
     var areAssumptions = assline1.isAssumption() && assline2.isAssumption();
 
-    return correctOperator && areAssumptions && (line1.last().equation === line2.last().equation);
+    return correctOperator && areAssumptions && (assline1.last().equation === assline2.last().equation);
   }
 
   applyRuleToProof(proof, endpoint, [line, lines]) {
+    super.applyRuleToProof(proof, endpoint, [line, lines]);
     var equation = this.applyRule(proof.line(lines[0]).last().equation);
-    proof.line(lines[0]).closeBox();
-    proof.line(lines[1]).closeBox();
-    proof.line(endpoint).addLine(new ProofTree({
+    proof.line(endpoint).parent.children.push(new ProofTree({
       rule: this.toString([line]),
       equation
     }));
+
+    proof.line(lines[0]).closeBox();
+    proof.line(lines[1]).closeBox();
+    proof.setLines();
   }
 
   toString([line1]) {
