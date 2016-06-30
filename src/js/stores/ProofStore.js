@@ -10,6 +10,7 @@ import DoubleNegationElimination from '../classes/Proof/Rule/DoubleNegationElimi
 import ConjunctionIntroduction1 from '../classes/Proof/Rule/ConjunctionElimination1'
 import ConjunctionIntroduction2 from '../classes/Proof/Rule/ConjunctionElimination2'
 import DisjunctionElimination from '../classes/Proof/Rule/DisjunctionElimination'
+import BottomElimination from '../classes/Proof/Rule/BottomElimination'
 
 import parser from '../classes/Parse/LogicExpressionParser'
 
@@ -24,9 +25,11 @@ class ProofStore extends EventEmitter {
     ps.scope(3).addLineNewScope(ProofTreeFactory.createAssumption('B'));
       ImplicationElimination.applyRuleToProof(ps,5,[1,5]);
       ImplicationElimination.applyRuleToProof(ps,7,[2,7]);
+      BottomElimination.applyRuleToProof(ps, 6, [4], 'D')
+      BottomElimination.applyRuleToProof(ps, 9, [4], 'D')
       // ps.scope(7).addLineNewScope(ProofTreeFactory.createAssumption('A'));
       // ImplicationIntroduction.applyRuleToProof(ps, 7, [7]);
-      // DisjunctionElimination.applyRuleToProof(ps,3,[3,[5,7]]);
+      DisjunctionElimination.applyRuleToProof(ps,3,[3,[5,8]]);
 
     // ps.scope(9).addLineNewScope(ProofTreeFactory.createAssumption('A'));
     // ImplicationIntroduction.applyRuleToProof(ps, 10, [10]);
