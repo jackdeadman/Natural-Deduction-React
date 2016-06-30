@@ -5,6 +5,7 @@ import ProofTree from '../classes/Proof/ProofTree'
 import ConjunctionIntroduction from '../classes/Proof/Rule/ConjunctionIntroduction'
 import ImplicationIntroduction from '../classes/Proof/Rule/ImplicationIntroduction'
 import ImplicationElimination from '../classes/Proof/Rule/ImplicationElimination'
+import DoubleNegationIntroduction from '../classes/Proof/Rule/DoubleNegationIntroduction'
 
 class ProofStore extends EventEmitter {
   constructor() {
@@ -27,6 +28,10 @@ class ProofStore extends EventEmitter {
 
     ps.setLines();
     ImplicationElimination.applyRuleToProof(ps, 4, [1,3]);
+
+    ps.setLines();
+    DoubleNegationIntroduction.applyRuleToProof(ps, 10, [10]);
+
   }
 
   getProofState() {

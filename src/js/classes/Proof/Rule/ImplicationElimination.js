@@ -8,7 +8,6 @@ class ImplicationElimination extends Rule {
   applyRule(leftExpr, rightExpr) {
     var leftExpr = logicExpressionParser.parse(leftExpr);
     var rightExpr = logicExpressionParser.parse(rightExpr);
-    console.log(leftExpr.right);
 
     return leftExpr.right.toString();
   }
