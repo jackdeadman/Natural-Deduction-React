@@ -13,16 +13,16 @@ class ConjunctionIntroduction extends Rule {
     return operator.toString();
   }
 
-  conditions(state, endpoint, [line1, line2]) {
+  conditions(state, endpoint, [line1], line2) {
     var endPointScope = state.line(endpoint);
     return endPointScope.inScope(line1)
             && endPointScope.inScope(line2);
   }
 
-  applyRuleToProof(proof, endpoint, lines) {
-    var line1 = proof.line(lines[0]);
-    var line2 = proof.line(lines[1]);
-    var equation = this.applyRule(line1.equation, line2.equation);
+  applyRuleToProof(proof, endpoint, [line1], expr) {
+    super.applyRuleToProof(proof, endpoint, [line1]);
+    var line1 = proof.line(line1);
+    var equation = this.applyRule(line1.equation, expr);
     proof.line(endpoint).addLine(new ProofTree({
       rule: this.toString(lines),
       equation

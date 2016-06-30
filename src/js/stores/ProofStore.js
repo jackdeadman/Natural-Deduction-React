@@ -7,9 +7,10 @@ import ImplicationIntroduction from '../classes/Proof/Rule/ImplicationIntroducti
 import ImplicationElimination from '../classes/Proof/Rule/ImplicationElimination'
 import DoubleNegationIntroduction from '../classes/Proof/Rule/DoubleNegationIntroduction'
 import DoubleNegationElimination from '../classes/Proof/Rule/DoubleNegationElimination'
-import ConjunctionIntroduction1 from '../classes/Proof/Rule/ConjunctionElimination1'
-import ConjunctionIntroduction2 from '../classes/Proof/Rule/ConjunctionElimination2'
+import ConjunctionElimination1 from '../classes/Proof/Rule/ConjunctionElimination1'
+import ConjunctionElimination2 from '../classes/Proof/Rule/ConjunctionElimination2'
 import DisjunctionElimination from '../classes/Proof/Rule/DisjunctionElimination'
+import DisjunctionIntroduction from '../classes/Proof/Rule/DisjunctionIntroduction'
 import BottomElimination from '../classes/Proof/Rule/BottomElimination'
 
 import parser from '../classes/Parse/LogicExpressionParser'
@@ -30,6 +31,7 @@ class ProofStore extends EventEmitter {
       // ps.scope(7).addLineNewScope(ProofTreeFactory.createAssumption('A'));
       // ImplicationIntroduction.applyRuleToProof(ps, 7, [7]);
       DisjunctionElimination.applyRuleToProof(ps,3,[3,[5,8]]);
+      DisjunctionIntroduction.applyRuleToProof(ps,11,[11], 'Hello');
 
     // ps.scope(9).addLineNewScope(ProofTreeFactory.createAssumption('A'));
     // ImplicationIntroduction.applyRuleToProof(ps, 10, [10]);
