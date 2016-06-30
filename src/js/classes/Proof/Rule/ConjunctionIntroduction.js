@@ -25,13 +25,13 @@ class ConjunctionIntroduction extends Rule {
     var line2 = proof.line(lines[1]);
     var equation = this.applyRule(line1.equation, line2.equation);
     proof.addLine(new ProofTree({
-      rule: this.toString(),
+      rule: this.toString(lines),
       equation
     }));
   }
 
-  toString() {
-    return 'Conjunction Introduction';
+  toString([line1, line2]) {
+    return `Conjunction Introduction ${line1}, ${line2} `;
   }
 }
 

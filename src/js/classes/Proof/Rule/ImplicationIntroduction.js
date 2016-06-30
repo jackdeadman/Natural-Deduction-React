@@ -25,7 +25,7 @@ class ImplicationIntroduction extends Rule {
     var equation = this.applyRule(line1.equation, line2.equation);
 
     var newLine = new ProofTree({
-      rule: this.toString(),
+      rule: this.toString([line1.lineNumber, line2.lineNumber]),
       equation
     });
 
@@ -45,8 +45,8 @@ class ImplicationIntroduction extends Rule {
     }
   }
 
-  toString() {
-    return "Implication Introduction";
+  toString([line1, line2]) {
+    return `Implication Introduction ${line1}-${line2}`;
   }
 }
 
