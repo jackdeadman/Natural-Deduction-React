@@ -6,6 +6,7 @@ import ConjunctionIntroduction from '../classes/Proof/Rule/ConjunctionIntroducti
 import ImplicationIntroduction from '../classes/Proof/Rule/ImplicationIntroduction'
 import ImplicationElimination from '../classes/Proof/Rule/ImplicationElimination'
 import DoubleNegationIntroduction from '../classes/Proof/Rule/DoubleNegationIntroduction'
+import DoubleNegationElimination from '../classes/Proof/Rule/DoubleNegationElimination'
 import ConjunctionIntroduction1 from '../classes/Proof/Rule/ConjunctionElimination1'
 import ConjunctionIntroduction2 from '../classes/Proof/Rule/ConjunctionElimination2'
 import DisjunctionElimination from '../classes/Proof/Rule/DisjunctionElimination'
@@ -24,7 +25,9 @@ class ProofStore extends EventEmitter {
 
     ps.scope(3).addLineNewScope(ProofTreeFactory.createAssumption('B'));
       ConjunctionIntroduction.applyRuleToProof(ps, 9, [8,9]);
-      ImplicationIntroduction.applyRuleToProof(ps, 9, [9]);
+    ImplicationIntroduction.applyRuleToProof(ps, 9, [9]);
+    DoubleNegationIntroduction.applyRuleToProof(ps, 11, [11]);
+    DoubleNegationElimination.applyRuleToProof(ps, 12, [12]);
 
 
     // ps.scope(4).addLine(new ProofTree({
