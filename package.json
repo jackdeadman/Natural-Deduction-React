@@ -13,8 +13,10 @@
     "babel-preset-stage-0": "^6.3.13",
     "flux": "^2.1.1",
     "gulp": "^3.9.1",
+    "history": "^3.0.0",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
+    "react-router": "^2.5.1",
     "underscore": "^1.8.3",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.1"
