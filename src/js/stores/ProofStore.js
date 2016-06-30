@@ -4,12 +4,13 @@ import ProofTreeFactory from '../classes/Proof/ProofTreeFactory'
 import ProofTree from '../classes/Proof/ProofTree'
 import ConjunctionIntroduction from '../classes/Proof/Rule/ConjunctionIntroduction'
 import ImplicationIntroduction from '../classes/Proof/Rule/ImplicationIntroduction'
+import ImplicationElimination from '../classes/Proof/Rule/ImplicationElimination'
 
 class ProofStore extends EventEmitter {
   constructor() {
     super();
     var ps;
-    this.proofState = ps = ProofTreeFactory.createNew(['A→C','B→C','A∨B']);
+    this.proofState = ps = ProofTreeFactory.createNew(['A→C','B→C','A']);
     ps.scope(3).addLineNewScope(ProofTreeFactory.createAssumption('A'));
     ps.scope(3).addLineNewScope(ProofTreeFactory.createAssumption('B'));
     ps.scope(4).addLine(new ProofTree({
@@ -23,6 +24,9 @@ class ProofStore extends EventEmitter {
 
     ps.setLines();
     ImplicationIntroduction.applyRuleToProof(ps, 7, [7]);
+
+    ps.setLines();
+    ImplicationElimination.applyRuleToProof(ps, 4, [1,3]);
   }
 
   getProofState() {
