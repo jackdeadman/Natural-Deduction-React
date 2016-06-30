@@ -100,6 +100,7 @@ class ProofTree {
   addLine(line) {
     line.parent = this.last();
     line.parent.children.push(line);
+    this.root().setLines();
   }
 
   closeBox() {
@@ -118,6 +119,7 @@ class ProofTree {
     });
     line.parent = this.last();
     this.children.push(line);
+    line.root().setLines();
   }
 }
 

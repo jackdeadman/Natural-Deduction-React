@@ -23,7 +23,7 @@ class ConjunctionIntroduction extends Rule {
     var line1 = proof.line(lines[0]);
     var line2 = proof.line(lines[1]);
     var equation = this.applyRule(line1.equation, line2.equation);
-    proof.addLine(new ProofTree({
+    proof.line(endpoint).addLine(new ProofTree({
       rule: this.toString(lines),
       equation
     }));

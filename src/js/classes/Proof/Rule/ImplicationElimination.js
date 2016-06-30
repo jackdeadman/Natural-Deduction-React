@@ -29,7 +29,6 @@ class ImplicationElimination extends Rule {
   }
 
   applyRuleToProof(proof, endpoint, lines) {
-    super.applyRuleToProof(proof, endpoint, lines);
     var line1 = proof.line(lines[0]);
     var line2 = proof.line(lines[1]);
     var equation = this.applyRule(line1.equation, line2.equation);

@@ -19,7 +19,7 @@ class ConjunctionElimination extends Rule {
   applyRuleToProof(proof, endpoint, [lineNumber]) {
     var line = proof.line(lineNumber);
     var equation = this.applyRule(line.equation);
-    proof.addLine(new ProofTree({
+    proof.line(endpoint).addLine(new ProofTree({
       rule: this.toString([lineNumber]),
       equation
     }));

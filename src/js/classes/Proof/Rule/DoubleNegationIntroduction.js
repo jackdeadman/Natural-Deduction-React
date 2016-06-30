@@ -20,7 +20,7 @@ class DoubleNegationIntroduction extends Rule {
 
   applyRuleToProof(proof, endpoint, [line]) {
     var equation = this.applyRule(proof.line(line).equation);
-    proof.addLine(new ProofTree({
+    proof.line(endpoint).addLine(new ProofTree({
       rule: this.toString([line]),
       equation
     }));

@@ -18,19 +18,16 @@ class ImplicationIntroduction extends Rule {
   }
 
   applyRuleToProof(proof, endpoint, [lineNumber1]) {
-    super.applyRuleToProof(proof, endpoint, [lineNumber1]);
     var line1 = proof.line(lineNumber1);
     var line2 = line1.last();
 
     var equation = this.applyRule(line1.equation, line2.equation);
-
-    proof.line(endpoint).addLine(new ProofTree({
+    var newLine = new ProofTree({
       rule: this.toString([line1.lineNumber, line2.lineNumber]),
       equation
-    }));
+    });
 
-    line1.closeBox();
-
+    proof.line(endpoint).addLine(newLine);
   }
 
   toString([line1, line2]) {
