@@ -16,12 +16,15 @@ class ProofStore extends EventEmitter {
     var ps;
     this.proofState = ps = ProofTreeFactory.createNew(['A→C','B→C','A∨B']);
     ps.scope(3).addLineNewScope(ProofTreeFactory.createAssumption('A'));
+
     ps.scope(3).addLineNewScope(ProofTreeFactory.createAssumption('B'));
-    ImplicationElimination.applyRuleToProof(ps,4,[1,4]);
-    ImplicationElimination.applyRuleToProof(ps,6,[2,6]);
-    DisjunctionElimination.applyRuleToProof(ps,3,[3,[4,6]]);
+      ImplicationElimination.applyRuleToProof(ps,4,[1,4]);
+      ImplicationElimination.applyRuleToProof(ps,6,[2,6]);
+      DisjunctionElimination.applyRuleToProof(ps,3,[3,[4,6]]);
+
     ps.scope(3).addLineNewScope(ProofTreeFactory.createAssumption('B'));
-    ImplicationIntroduction.applyRuleToProof(ps, 9, [9]);
+      ConjunctionIntroduction.applyRuleToProof(ps, 9, [8,9]);
+      ImplicationIntroduction.applyRuleToProof(ps, 9, [9]);
 
 
     // ps.scope(4).addLine(new ProofTree({

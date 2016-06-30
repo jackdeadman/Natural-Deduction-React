@@ -27,7 +27,10 @@ class ImplicationIntroduction extends Rule {
       equation
     });
 
-    proof.line(endpoint).addLine(newLine);
+    line1.closeBox();
+    proof.line(endpoint).parent.parent.children.push(newLine);
+    newLine.parent = line1.parent;
+    // proof.line(endpoint).parent.addLine(newLine);
   }
 
   toString([line1, line2]) {
