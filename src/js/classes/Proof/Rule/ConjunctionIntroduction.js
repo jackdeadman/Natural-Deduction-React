@@ -10,7 +10,7 @@ class ConjunctionIntroduction extends Rule {
     operator.left = logicExpressionParser.parse(leftExpr);
     operator.right = logicExpressionParser.parse(rightExpr);
 
-    return operator;
+    return operator.toString();
   }
 
   conditions(state, endpoint, lines) {
@@ -25,10 +25,10 @@ class ConjunctionIntroduction extends Rule {
     var line1 = proof.line(lines[0]);
     var line2 = proof.line(lines[1]);
     var equation = this.applyRule(line1.equation, line2.equation);
-    proof.addLine({
-      rule: this,
+    proof.addLine(new ProofTree({
+      rule: this.toString(),
       equation
-    });
+    }));
   }
 
   toString() {

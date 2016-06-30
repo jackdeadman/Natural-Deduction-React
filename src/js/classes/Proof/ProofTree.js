@@ -67,6 +67,13 @@ class ProofTree {
       return true;
     } else {
       if (this.parent === null) return false;
+      var child = null;
+      var anySiblings = this.parent.children.some(child => {
+        return !child.isAssumption() && (child.lineNumber === target)
+      })
+      if (anySiblings) {
+        return true;
+      }
       return this.parent.inScope(target);
     }
   }
@@ -90,14 +97,17 @@ class ProofTree {
     return line;
   }
 
-  addLine({equation, rule, newScope=false}) {
-    var line = new ProofTree({
-      equation,
-      rule,
-      newScope
-    });
+  addLine(line) {
     line.parent = this.last();
     line.parent.children.push(line);
+  }
+
+  closeBox() {
+    this.isSound = true;
+  }
+
+  addLineTo(line, lineNumber) {
+    // line.parent = this.line()
   }
 
   addLineNewScope({equation, rule}) {

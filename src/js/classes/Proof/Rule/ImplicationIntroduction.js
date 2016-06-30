@@ -5,32 +5,49 @@ import Rule from './Rule'
 import ProofTree from '../ProofTree'
 
 class ImplicationIntroduction extends Rule {
+  applyRule(leftExpr, rightExpr) {
+    var operator = new Expression(LogicOperatorSet.IMPLIES);
+    operator.left = logicExpressionParser.parse(leftExpr);
+    operator.right = logicExpressionParser.parse(rightExpr);
 
-  // ConjunctionIntroduction.scope(state, 3).apply(1,3);
-  // ImplicationIntroduction.scope(state, 6).apply()
-  //
-  // rule.scope(state, 6).apply(4,6);
-  //
-  //
-  // apply(state, scope, [line]) {
-  //   var line = state.line(line);
-  //   if (line.newScope) {
-  //     var operator = new Expression(LogicOperatorSet.IMPLIES);
-  //     console.log(line);
-  //     var leftExpr = logicExpressionParser.parse(line.equation);
-  //     var rightExpr = logicExpressionParser.parse(line.last().equation);
-  //
-  //     operator.left = leftExpr;
-  //     operator.right = rightExpr;
-  //
-  //     state.children.push(new ProofTree({
-  //       equation: operator.toString(),
-  //       rule: 'Implication Introduction'
-  //     }));
-  //     console.log(operator);
-  //     return state;
-  //   }
-  // }
+    return operator.toString();
+  }
+
+  conditions(state, endpoint, [lineNumber]) {
+    return state.line(lineNumber).isAssumption();
+  }
+
+  applyRuleToProof(proof, endpoint, lines) {
+    super.applyRuleToProof(proof, endpoint, lines);
+    var line1 = proof.line(lines[0]);
+    var line2 = line1.last();
+
+    var equation = this.applyRule(line1.equation, line2.equation);
+
+    var newLine = new ProofTree({
+      rule: this.toString(),
+      equation
+    });
+
+    var index = 0;
+    line1.parent.children.some(child =>{
+      if (line1.lineNumber === child.lineNumber) {
+        return true;
+      }
+      index++;
+    });
+
+    if (index >= 0) {
+      var newParent = line1.parent;
+      line1.closeBox();
+      newParent.children.splice(index+1, 0, newLine);
+      newLine.parent = newParent
+    }
+  }
+
+  toString() {
+    return "Implication Introduction";
+  }
 }
 
 export default new ImplicationIntroduction();

@@ -3,6 +3,7 @@ import dispatcher from '../dispatcher'
 import ProofTreeFactory from '../classes/Proof/ProofTreeFactory'
 import ProofTree from '../classes/Proof/ProofTree'
 import ConjunctionIntroduction from '../classes/Proof/Rule/ConjunctionIntroduction'
+import ImplicationIntroduction from '../classes/Proof/Rule/ImplicationIntroduction'
 
 class ProofStore extends EventEmitter {
   constructor() {
@@ -15,13 +16,13 @@ class ProofStore extends EventEmitter {
       equation: 'C',
       rule: 'Implication Elimination'
     }));
-    ps.scope(3).addLineNewScope(ProofTreeFactory.createAssumption('C'));
     ps.setLines();
     ConjunctionIntroduction.applyRuleToProof(ps, 3, [1,2]);
-    ps.scope(8).addLineNewScope(ProofTreeFactory.createAssumption('B'));
     ps.setLines();
-    ConjunctionIntroduction.applyRuleToProof(ps, 8, [1,3]);
+    ImplicationIntroduction.applyRuleToProof(ps, 3, [4]);
 
+    ps.setLines();
+    ImplicationIntroduction.applyRuleToProof(ps, 7, [7]);
   }
 
   getProofState() {
