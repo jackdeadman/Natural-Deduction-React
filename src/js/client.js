@@ -7,12 +7,9 @@ import Selection from './pages/Selection';
 
 const app = document.getElementById('app');
 
-setTimeout(_ => {
-  ReactDOM.render(
-      <Router history={hashHistory}>
-        <Route path='/' component={Selection}/>
-        <Route path='/proof' component={Proof}/>
-      </Router>
-  , app);
-
-}, 3000);
+ReactDOM.render(
+    <Router history={hashHistory}>
+      <Route path='/' component={Selection}/>
+      <Route path='/proof' component={Proof}/>
+    </Router>
+, app);

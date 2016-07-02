@@ -23,7 +23,6 @@
   },
   "scripts": {
     "dev": "./node_modules/.bin/webpack-dev-server --content-base src --inline --hot",
-    "dev2": "./node_modules/.bin/webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jack Deadman",

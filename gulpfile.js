@@ -1,25 +1,53 @@
+var debug = process.env.NODE_ENV !== "production";
 var gulp = require('gulp');
-var webpack = require('webpack-stream');
+var gutil = require("gulp-util");
+var webpack = require("webpack");
+var WebpackDevServer = require("webpack-dev-server");
 var sass = require('gulp-sass');
+var rename = require("gulp-rename");
 
-gulp.task('default', function() {
-  return gulp.src('./src/js/client.js')
-    .pipe(webpack({
-    context: __dirname + "/src/js",
-    entry: "./client.js",
-    output: {
-        path: __dirname + "/src/js",
-        filename: "js/client.min.js",
-    }}))
-    .pipe(gulp.dest('dist/'))
-});
 
-gulp.task('sass', function () {
-  return gulp.src('./src/css/**/*.scss')
+gulp.task('sass:production', function () {
+  return gulp.src('src/css/*.sass')
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-    .pipe(gulp.dest('./src/css'));
+    .pipe(rename({
+      suffix: '.min'
+    }))
+    .pipe(gulp.dest('src/css/'));
 });
 
-gulp.task('sass:watch', function () {
-  gulp.watch('./sass/**/*.scss', ['sass']);
+gulp.task('sass:debug', function () {
+  return gulp.src('src/css/*.sass')
+    .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
+    .pipe(rename({
+      suffix: '.min'
+    }))
+    .pipe(gulp.dest('src/css/'));
 });
+
+gulp.task("webpack-dev-server", function(callback) {
+  // Start a webpack-dev-server
+  var config = require('./webpack.config.js');
+  var compiler = webpack(config);
+
+  new WebpackDevServer(compiler, {
+    contentBase: "src",
+    inline: true,
+    hot: true
+  }).listen(8080, "localhost", function(err) {
+    if(err) throw new gutil.PluginError("webpack-dev-server", err);
+    // Server listening
+    gutil.log("[webpack-dev-server]", "http://localhost:8080/webpack-dev-server/index.html");
+
+    // keep the server alive or continue?
+    callback();
+  });
+});
+
+gulp.task('sass:watch', function() {
+  debug
+    ? gulp.watch('src/css/*.sass', ['sass:debug'])
+    : gulp.watch('src/css/*.sass', ['sass:production']);
+});
+
+gulp.task('default', ['sass:watch', 'webpack-dev-server']);
