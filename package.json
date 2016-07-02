@@ -28,7 +28,6 @@
   "author": "Jack Deadman",
   "license": "MIT",
   "devDependencies": {
-    "gulp-sass": "^2.3.2",
-    "webpack-stream": "^3.2.0"
+    "gulp-sass": "^2.3.2"
   }
 }
