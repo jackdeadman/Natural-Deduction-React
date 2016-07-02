@@ -46,8 +46,8 @@ gulp.task("webpack-dev-server", function(callback) {
 
 gulp.task('sass:watch', function() {
   debug
-    ? gulp.watch('src/css/*.sass', ['sass:debug'])
-    : gulp.watch('src/css/*.sass', ['sass:production']);
+    ? gulp.watch('src/css/**/*.sass', ['sass:debug'])
+    : gulp.watch('src/css/**/*.sass', ['sass:production']);
 });
 
 gulp.task('default', ['sass:watch', 'webpack-dev-server']);
