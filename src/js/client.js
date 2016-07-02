@@ -6,9 +6,13 @@ import Proof from './pages/Proof';
 import Selection from './pages/Selection';
 
 const app = document.getElementById('app');
-ReactDOM.render(
-    <Router history={hashHistory}>
-      <Route path='/' component={Selection}/>
-      <Route path='/proof' component={Proof}/>
-    </Router>
-, app);
+
+setTimeout(_ => {
+  ReactDOM.render(
+      <Router history={hashHistory}>
+        <Route path='/' component={Selection}/>
+        <Route path='/proof' component={Proof}/>
+      </Router>
+  , app);
+
+}, 3000);

@@ -14,6 +14,15 @@ class LogicExpresssionParser extends Parser {
     var tokenList = string.match(regex);
     return tokenList;
   }
+
+  isWellformed(string) {
+    try {
+      this.parse(string);
+      return true;
+    } catch(err) {
+      return false;
+    }
+  }
 }
 window.logic = new LogicExpresssionParser();
 export default new LogicExpresssionParser();

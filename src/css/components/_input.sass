@@ -1,0 +1,34 @@
+.text-field
+  border: none
+  border-bottom: 1px solid $default__color
+  overflow: auto
+  outline: none
+
+  -webkit-box-shadow: none
+  -moz-box-shadow: none
+  box-shadow: none
+  font-size: 1em
+
+
+  padding: $unit $unit/2
+
+  +modifier('full')
+    width: 100%
+
+  +modifier('large')
+    font-size: 1.5em
+    padding: $unit 2*$unit
+
+  &:focus
+    border-bottom-width: 2px
+    border-color: $primary__color
+    color: $primary__color
+
+    &::-webkit-input-placeholder
+      color: $primary__color
+    &::-moz-placeholder
+      color: $primary__color
+    &:-ms-input-placeholder
+      color: $primary__color
+    &:-moz-placeholder
+      color: $primary__color

@@ -5,7 +5,7 @@
 
 [class*='col-']
   float: left
-  padding-right: $grid__pad
+  // padding-right: $grid__pad
   .grid &:last-of-type
     padding-right: 0
 
@@ -18,6 +18,8 @@
 =create_column($num, $den)
   .col-#{$num}-#{$den}
     width: percentage($num / $den)
+  .col-offset-#{$num}-#{$den}
+    margin-left: percentage($num / $den)
 
 @each $i in factors($grid__size)
   @for $j from 1 through $i

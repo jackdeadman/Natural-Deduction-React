@@ -28,14 +28,14 @@ class Parser {
     }
     else if (operator.arity === 1){
         var rightExpr = exprStack.pop();
-        // if (!rightExpr) throw "Invalid number of arguments for " + operator.symbol + " expected 1, 0 given.";
+        if (!rightExpr) throw "Invalid number of arguments for " + operator.symbol + " expected 1, 0 given.";
 
         exprStack.push(new Expression(operator, rightExpr));
     } else if (operator.arity === 2){
         var rightExpr = exprStack.pop();
         var leftExpr = exprStack.pop();
-        // if (!leftExpr || !rightExpr)
-        //     throw "Invalid number of arguments for " + operator.symbol + " expected 2, "+(!!leftExpr+!!rightExpr)+" given.";
+        if (!leftExpr || !rightExpr)
+            throw "Invalid number of arguments for " + operator.symbol + " expected 2, "+(!!leftExpr+!!rightExpr)+" given.";
         exprStack.push(new Expression(operator, leftExpr, rightExpr));
     }
   }
