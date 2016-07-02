@@ -5,6 +5,7 @@ var webpack = require("webpack");
 var WebpackDevServer = require("webpack-dev-server");
 var sass = require('gulp-sass');
 var rename = require("gulp-rename");
+var livereload = require('gulp-livereload');
 
 
 gulp.task('sass:production', function () {
@@ -22,7 +23,8 @@ gulp.task('sass:debug', function () {
     .pipe(rename({
       suffix: '.min'
     }))
-    .pipe(gulp.dest('src/css/'));
+    .pipe(gulp.dest('src/css/'))
+    .pipe(livereload());
 });
 
 gulp.task("webpack-dev-server", function(callback) {
@@ -45,6 +47,7 @@ gulp.task("webpack-dev-server", function(callback) {
 });
 
 gulp.task('sass:watch', function() {
+  livereload.listen();
   debug
     ? gulp.watch('src/css/**/*.sass', ['sass:debug'])
     : gulp.watch('src/css/**/*.sass', ['sass:production']);
