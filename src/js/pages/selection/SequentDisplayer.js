@@ -2,18 +2,23 @@ import React from 'react';
 import parser from '../../classes/Parse/LogicExpressionParser'
 
 class SequentDisplayer extends React.Component {
-  render() {
+  addValid(string) {
+    var valid = parser.isWellformed(string);
+    var className = valid ? 'valid' : 'invalid';
+    return <span class={"sequent-displayer__equation "+className}>{string}</span>;
+  }
 
-    var premises = this.props.premises.filter(a=>a !== '').map(premise => {
-      var valid = parser.isWellformed(premise);
-      var className = valid ? 'valid' : 'invalid';
-      return <span class={className}>{premise}</span>;
-    });
+
+  render() {
+    var premises = this.props.premises.join(', ').split(' ');
+    premises = premises.filter(a=>a !== '').map(this.addValid);
+    var conclusion = this.addValid(this.props.conclusion);
 
     return (
-      <div class="font__medium grid">
-        <div class="col-1-2">{premises}</div>
-        <div class="col-1-2">{this.props.conclusion}</div>
+      <div class="sequent-displayer">
+        <div class="sequent-displayer__premises">{premises}</div>
+        <div class="sequent-displayer__turnstile">⊢</div>
+        <div class="sequent-displayer__conclusion">{conclusion}</div>
       </div>
     )
   }

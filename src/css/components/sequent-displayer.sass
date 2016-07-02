@@ -1,0 +1,29 @@
+$turnstile-width: 80px
+
+.sequent-displayer
+  padding: 2*$unit 0
+  font-size: 2em
+  display: table
+  table-layout: fixed
+  width: 100%
+
+  +element('equation')
+    margin: 0 $unit/2
+
+  +element('premises')
+    width: calc(50% - #{$turnstile-width/2})
+    display: table-cell
+    text-align: right
+    vertical-align: middle
+
+  +element('turnstile')
+    width: $turnstile-width
+    display: table-cell
+    text-align: center
+    vertical-align: middle
+
+  +element('conclusion')
+    width: calc(50% - #{$turnstile-width/2})
+    display: table-cell
+    text-align: left
+    vertical-align: middle

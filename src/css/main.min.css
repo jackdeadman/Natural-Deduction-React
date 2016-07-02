@@ -134,6 +134,22 @@ button::-moz-focus-inner {
   color: red;
 }
 
+.big-nudge-left {
+  padding-left: 30px;
+}
+
+.big-nudge-right {
+  padding-right: 30px;
+}
+
+.nudge-left {
+  padding-left: 10px;
+}
+
+.nudge-right {
+  padding-right: 10px;
+}
+
 .grid {
   background: white;
   margin: 0 0 20px 0;
@@ -528,6 +544,39 @@ body {
 
 .input-box__input:focus {
   border-color: #c2d1e4;
+}
+
+.sequent-displayer {
+  padding: 20px 0;
+  font-size: 2em;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.sequent-displayer__equation {
+  margin: 0 5px;
+}
+
+.sequent-displayer__premises {
+  width: calc(50% - 40px);
+  display: table-cell;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.sequent-displayer__turnstile {
+  width: 80px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.sequent-displayer__conclusion {
+  width: calc(50% - 40px);
+  display: table-cell;
+  text-align: left;
+  vertical-align: middle;
 }
 
 .button {
