@@ -1,34 +1,19 @@
-.text-field
-  border: none
-  border-bottom: 1px solid $default__color
-  overflow: auto
-  outline: none
-
-  -webkit-box-shadow: none
-  -moz-box-shadow: none
-  box-shadow: none
-  font-size: 1em
-
-
-  padding: $unit $unit/2
-
-  +modifier('full')
+.input-box
+  background-color: $primary__color--dark
+  color: $primary__color--dark-contrast
+  padding: $unit/2
+  +element('label')
+    padding: $unit/2
     width: 100%
+    display: block
+    font-size: 1.2em
 
-  +modifier('large')
-    font-size: 1.5em
-    padding: $unit 2*$unit
-
-  &:focus
-    border-bottom-width: 2px
-    border-color: $primary__color
-    color: $primary__color
-
-    &::-webkit-input-placeholder
-      color: $primary__color
-    &::-moz-placeholder
-      color: $primary__color
-    &:-ms-input-placeholder
-      color: $primary__color
-    &:-moz-placeholder
-      color: $primary__color
+  +element('input')
+    outline: none
+    width: 100%
+    display: block
+    padding: $unit
+    font-size: 0.8em
+    border: 2px solid transparent
+    &:focus
+      border-color: $primary__color--light

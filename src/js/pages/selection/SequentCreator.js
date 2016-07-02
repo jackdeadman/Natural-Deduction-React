@@ -29,12 +29,18 @@ class SequentCreator extends React.Component {
 
   render() {
     return (
-      <div class="grid container">
-        <div class="col-5-12 text-center">
-          <input class="text-field text-field--large text-field--full" placeholder="Enter Premises here..." onChange={this.handleChangePrem.bind(this)} autofocus="autofocus"/>
+      <div class="grid container container--spacey">
+        <div class="col-1-2 container">
+          <div class="input-box input-box--focused">
+            <label class="input-box__label">Premises</label>
+            <input class="input-box__input" placeholder="e.g. A∨B, A→C, B→C"></input>
+          </div>
         </div>
-        <div class="col-5-12 text-center col-offset-2-12">
-          <input class="text-field text-field--large text-field--full" placeholder="Enter Conclusion here..." onChange={this.handleChangeCon.bind(this)} autofocus="autofocus"/>
+        <div class="col-1-2 container">
+          <div class="input-box">
+            <label class="input-box__label">Conclusion</label>
+            <input class="input-box__input" placeholder="e.g. C"></input>
+          </div>
         </div>
       </div>
     )
