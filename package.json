@@ -13,6 +13,8 @@
     "babel-preset-stage-0": "^6.3.13",
     "flux": "^2.1.1",
     "gulp": "^3.9.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-rename": "^1.2.2",
     "history": "^3.0.0",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
