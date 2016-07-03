@@ -2,10 +2,13 @@ var debug = process.env.NODE_ENV !== "production";
 var gulp = require('gulp');
 var gutil = require("gulp-util");
 var webpack = require("webpack");
+var webpackStream = require("webpack-stream");
 var WebpackDevServer = require("webpack-dev-server");
 var sass = require('gulp-sass');
 var rename = require("gulp-rename");
 var livereload = require('gulp-livereload');
+var htmlreplace = require('gulp-html-replace');
+var path = require('path');
 
 
 gulp.task('sass:production', function () {
@@ -14,16 +17,13 @@ gulp.task('sass:production', function () {
     .pipe(rename({
       suffix: '.min'
     }))
-    .pipe(gulp.dest('src/css/'));
+    .pipe(gulp.dest('dist/css/'));
 });
 
 gulp.task('sass:debug', function () {
   return gulp.src('src/css/*.sass')
     .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
-    .pipe(rename({
-      suffix: '.min'
-    }))
-    .pipe(gulp.dest('src/css/'))
+    .pipe(gulp.dest('dist/css/'))
     .pipe(livereload());
 });
 
@@ -33,7 +33,7 @@ gulp.task("webpack-dev-server", function(callback) {
   var compiler = webpack(config);
 
   new WebpackDevServer(compiler, {
-    contentBase: "src",
+    contentBase: "dist",
     inline: true,
     hot: true
   }).listen(8080, "localhost", function(err) {
@@ -46,6 +46,14 @@ gulp.task("webpack-dev-server", function(callback) {
   });
 });
 
+gulp.task('webpack', function() {
+  process.env.NODE_ENV = "production";
+  var config = require('./webpack.config.js');
+  return gulp.src('src/client.js')
+    .pipe(webpackStream(config))
+    .pipe(gulp.dest('dist/js'));
+});
+
 gulp.task('sass:watch', function() {
   livereload.listen();
   debug
@@ -53,4 +61,18 @@ gulp.task('sass:watch', function() {
     : gulp.watch('src/css/**/*.sass', ['sass:production']);
 });
 
-gulp.task('default', ['sass:watch', 'webpack-dev-server']);
+gulp.task('webpack:watch', function() {
+  gulp.watch('src/js/**/*.js', ['webpack']);
+});
+
+gulp.task('add-tags', function() {
+  return gulp.src('src/index.html')
+    .pipe(htmlreplace({
+      js: 'js/client.min.js',
+      css: (debug ? 'css/main.min.css' : 'css/main.css')
+    }))
+    .pipe(gulp.dest('dist'));
+});
+
+gulp.task('default', ['add-tags','sass:watch', 'webpack:watch', 'webpack-dev-server']);
+gulp.task('build', ['add-tags', 'sass:production', 'webpack']);

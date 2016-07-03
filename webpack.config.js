@@ -20,12 +20,13 @@ module.exports = {
     ]
   },
   output: {
-    path: path.join(__dirname, "src"),
+    path: path.join(__dirname, "dist/js"),
     filename: "client.min.js"
   },
-  plugins: debug ? [] : [
+  plugins: debug ? [] :[
     new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
+    new webpack.optimize.OccurenceOrderPlugin()
+    // Doesn't support new.target commented out for now
+    // new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
   ],
 };
