@@ -24,5 +24,4 @@ class LogicExpresssionParser extends Parser {
     }
   }
 }
-window.logic = new LogicExpresssionParser();
-export default new LogicExpresssionParser();
+export default LogicExpresssionParser;
