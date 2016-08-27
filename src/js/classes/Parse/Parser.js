@@ -5,15 +5,15 @@ import Expression from './Expression'
 class Parser {
   constructor(operatorSet) {
     this.operatorSet = operatorSet;
-    if (new.target === Parser) {
-      throw new TypeError("Cannot construct Parser instances directly");
-    }
+    // if (new.target === Parser) {
+    //   throw new TypeError("Cannot construct Parser instances directly");
+    // }
   }
 
   _getTokens(string) {
-    if (new.target === Parser) {
-      throw new TypeError("Must override _getTokens");
-    }
+    // if (new.target === Parser) {
+    //   throw new TypeError("Must override _getTokens");
+    // }
   }
 
   // Applies the operator that is on top of the operator stack
