@@ -5,12 +5,12 @@ import ProofPrompt from './ProofPrompt';
 class ProofBox extends React.Component {
   // A proofbox line can be a normal line or
   // a start of an assumption box
-  static renderLines(lines) {
+  static renderLines(lines, onSelectFunc) {
     return lines.map(line => {
       // Recursively add prooflines
       var remaining = [].concat(
-        <ProofLine { ...line }/>,
-        ProofBox.renderLines(line.children)
+        <ProofLine selected={true} onSelect={onSelectFunc} { ...line }/>,
+        ProofBox.renderLines(line.children, onSelectFunc)
       );
 
       if (line.isAssumption()) {
@@ -31,7 +31,7 @@ class ProofBox extends React.Component {
     return (
       <div class="proof-box proof-box--main" onClick={this.closeBox}>
         <ul class="proof-box__line-contents">
-          { ProofBox.renderLines([this.props.proofState]) }
+          { ProofBox.renderLines([this.props.proofState], this.props.onLineSelect) }
           <ProofPrompt lineNumber={1}/>
         </ul>
       </div>

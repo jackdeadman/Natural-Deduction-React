@@ -472,6 +472,10 @@ body {
   margin: 10px 0;
 }
 
+.proof-line--selected {
+  background-color: blue !important;
+}
+
 .proof-line--prompted {
   padding: 0;
 }

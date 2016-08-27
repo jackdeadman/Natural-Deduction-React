@@ -2,6 +2,9 @@
   padding: $unit
   margin: $unit 0
 
+  +modifier('selected')
+    background-color: blue !important
+
   +modifier('prompted')
     padding: 0
     +element('line-number')
@@ -26,9 +29,6 @@
     left: -1em
     width: $line-number__width
     text-align: right
-
-    +modifier('active')
-      // margin-top: $line-prompt__padding
 
   +element('equation')
     float: left

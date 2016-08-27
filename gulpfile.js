@@ -23,7 +23,10 @@ gulp.task('sass:production', function () {
 gulp.task('sass:debug', function () {
   return gulp.src('src/css/*.sass')
     .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
-    .pipe(gulp.dest('dist/css/'))
+    .pipe(rename({
+      suffix: '.min'
+    }))
+    .pipe(gulp.dest('src/css/'))
     .pipe(livereload());
 });
 
@@ -33,7 +36,7 @@ gulp.task("webpack-dev-server", function(callback) {
   var compiler = webpack(config);
 
   new WebpackDevServer(compiler, {
-    contentBase: "dist",
+    contentBase: "src",
     inline: true,
     hot: true
   }).listen(8080, "localhost", function(err) {
@@ -65,14 +68,5 @@ gulp.task('webpack:watch', function() {
   gulp.watch('src/js/**/*.js', ['webpack']);
 });
 
-gulp.task('add-tags', function() {
-  return gulp.src('src/index.html')
-    .pipe(htmlreplace({
-      js: 'js/client.min.js',
-      css: (debug ? 'css/main.min.css' : 'css/main.css')
-    }))
-    .pipe(gulp.dest('dist'));
-});
-
-gulp.task('default', ['add-tags','sass:watch', 'webpack:watch', 'webpack-dev-server']);
-gulp.task('build', ['add-tags', 'sass:production', 'webpack']);
+gulp.task('default', ['sass:debug', 'sass:watch', 'webpack-dev-server']);
+gulp.task('build', ['sass:production', 'webpack']);

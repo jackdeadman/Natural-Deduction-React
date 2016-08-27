@@ -19,7 +19,8 @@ class Layout extends React.Component {
     this.state = {
       premises,
       conclusion,
-      proofState: proofStore.getProofState()
+      proofState: proofStore.getProofState(),
+      selectedLines: []
     };
     window.con = ConjunctionIntroduction;
     window.state = proofStore.getProofState();
@@ -39,6 +40,12 @@ class Layout extends React.Component {
     // proofActions.applyRule(ImplicationIntroduction, 1, proofStore.getProofState().lastNumber());
   }
 
+  selectLine(line) {
+    console.log(this.state);
+    var lines = this.state.selectedLines.concat([line]);
+    this.setState({selectedLines: lines});
+  }
+
   render() {
     return (
       <div class="container container--centered container--medium container--spacey">
@@ -50,10 +57,10 @@ class Layout extends React.Component {
         <div class="grid">
           <div class="col-2-3">
             <ProofDeclaration premises={this.state.premises} conclusion={this.state.conclusion} />
-            <ProofBox proofState={this.state.proofState}/>
+            <ProofBox onLineSelect={this.selectLine.bind(this)} proofState={this.state.proofState}/>
           </div>
           <div class="col-1-3">
-            {/* <ProofRules/>*/}
+             {/*<ProofRules/>*/}
           </div>
         </div>
         <button onClick={this.applyRule.bind(this)} class="button button--dark">Apply Rule</button>
