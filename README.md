@@ -8,7 +8,6 @@ Currently the application is still in Alpha, all the rules can be applied progra
 ## Installation
 
 Currently the only way to install the software is from source.
-TODO: actually get these steps working
 
 1. Clone the repo `git clone https://github.com/jackdeadman/Natural-Deduction-React`
 2. Install the dependencies `npm install`

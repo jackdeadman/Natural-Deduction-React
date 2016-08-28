@@ -50,7 +50,7 @@ gulp.task("webpack-dev-server", function(callback) {
   });
 });
 
-gulp.task('webpack', function() {
+gulp.task('compileJS', function() {
   process.env.NODE_ENV = "production";
   var config = require('./webpack.config.js');
   return gulp.src('src/client.js')
@@ -69,5 +69,9 @@ gulp.task('webpack:watch', function() {
   gulp.watch('src/js/**/*.js', ['webpack']);
 });
 
+gulp.task('moveIndex', function() {
+  return gulp.src('src/index.html').pipe(gulp.dest('dist'));
+});
+
 gulp.task('default', ['sass:debug', 'sass:watch', 'webpack-dev-server']);
-gulp.task('build', ['sass:production', 'webpack']);
+gulp.task('build', ['sass:production', 'compileJS', 'moveIndex']);
