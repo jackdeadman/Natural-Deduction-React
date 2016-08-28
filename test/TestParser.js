@@ -5,11 +5,11 @@ import assert from 'assert';
 import LogicExpressionParser from '../src/js/classes/Parse/LogicExpressionParser';
 
 describe('LogicExpressionParser', function() {
-  describe('#isWellformed()', function() {
+  beforeEach(function() {
+    this._parser = new LogicExpressionParser();
+  });
 
-    beforeEach(function() {
-      this._parser = new LogicExpressionParser();
-    });
+  describe('#isWellformed()', function() {
 
     it('should detect a binary operator with only no operands is not well formed', function() {
       assert.strictEqual(this._parser.isWellformed('∧'), false);
@@ -38,5 +38,14 @@ describe('LogicExpressionParser', function() {
     it('should be able to detect the empty expression is well formed', function() {
       assert.strictEqual(this._parser.isWellformed(''), true);
     });
-  })
+
+    it('should be able to detect that complex expressions of well formed expressions are well formed', function() {
+      assert.strictEqual(this._parser.isWellformed('¬(a∧b)∨(a∧b)'), true);
+    });
+
+    it('should be able to detect that complex expressions of not well formed expressions are not well formed', function() {
+      assert.strictEqual(this._parser.isWellformed('¬(a∧∧b)∨(a∧b)'), false);
+    });
+  });
+
 });
