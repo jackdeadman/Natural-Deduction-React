@@ -85,8 +85,12 @@ class Parser {
     while(operatorStack.length !== 0){
         this._applyOperator(operatorStack, exprStack);
     }
+    var result = exprStack.pop();
 
-    return exprStack.pop();
+    if (exprStack.length) {
+      throw 'Failed to parse the expression.';
+    }
+    return result;
   }
 }
 

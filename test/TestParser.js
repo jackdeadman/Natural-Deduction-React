@@ -32,7 +32,11 @@ describe('LogicExpressionParser', function() {
     });
 
     it('should be able to detect a unary operator with two operands is not well formed', function() {
-      assert.strictEqual(this._parser.isWellformed('a¬a'), true);
+      assert.strictEqual(this._parser.isWellformed('a¬a'), false);
+    });
+
+    it('should be able to detect the empty expression is well formed', function() {
+      assert.strictEqual(this._parser.isWellformed(''), true);
     });
   })
 });
