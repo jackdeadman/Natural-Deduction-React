@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for Expression.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="prettify.css" />
+    <link rel="stylesheet" href="base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="index.html">All files</a> Expression.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">21.05% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>8/38</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">12.9% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>4/31</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">25% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">21.05% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>8/38</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// Counts the number of nodes in a tree
+f</span>unction <span class="fstat-no" title="function not covered" >size(tree) {
+<span class="cstat-no" title="statement not covered" >    if (tree) {</span>
+<span class="cstat-no" title="statement not covered" >        return 1 + size(tree.left) + size(tree.right);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return 0;</span>
+}
+&nbsp;
+f</span>unction <span class="fstat-no" title="function not covered" >needsBrackets(tree, branch) {
+<span class="cstat-no" title="statement not covered" >    return size(branch) &gt; 1 &amp;&amp; branch.value.precedence &lt; tree.value.precedence;</span>
+}
+&nbsp;
+f</span>unction <span class="fstat-no" title="function not covered" >walkTree(tree, letters) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (tree) {</span>
+        v</span>ar leftBranch = <span class="cstat-no" title="statement not covered" >needsBrackets(tree, tree.left);
+        v</span>ar rightBranch = <span class="cstat-no" title="statement not covered" >needsBrackets(tree, tree.right);
+&nbsp;
+        // Add brackets only if they are needed
+<span class="cstat-no" title="statement not covered" >        if (leftBranch)</span>
+<span class="cstat-no" title="statement not covered" >            letters.push('(');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        walkTree(tree.left, letters);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (leftBranch)</span>
+<span class="cstat-no" title="statement not covered" >            letters.push(')');</span>
+&nbsp;
+        // Print the node value, could be a symbol or a string
+<span class="cstat-no" title="statement not covered" >        if (tree.value.symbol) {</span>
+<span class="cstat-no" title="statement not covered" >            letters.push(tree.value.symbol);</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >            letters.push(tree.value);</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (rightBranch)</span>
+<span class="cstat-no" title="statement not covered" >            letters.push('(');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        walkTree(tree.right, letters);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (rightBranch)</span>
+<span class="cstat-no" title="statement not covered" >            letters.push(')');</span>
+    }
+}
+&nbsp;
+class Expression {
+&nbsp;
+  constructor(){
+      //either a value (like a word, terminal etc), or an operator in a larger expression
+      this.value = arguments[0];
+      this.left = this.right = null;
+&nbsp;
+      if(arguments.length === 2){
+          //unary expression, operator already set so right is single value
+          this.right = arguments[1];
+      }else if(arguments.length === 3){
+          //binary expression, operator comes first (already set), followed by two operands (left, right)
+          this.left = arguments[1];
+          this.right = arguments[2];
+      }
+  }
+&nbsp;
+  static equals(tree1, tree2) {
+<span class="cstat-no" title="statement not covered" >      if (!tree1 || !tree2) {</span>
+<span class="cstat-no" title="statement not covered" >          if (!tree1 &amp;&amp; !tree2)</span>
+<span class="cstat-no" title="statement not covered" >              return true;</span>
+          else
+<span class="cstat-no" title="statement not covered" >              return false;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      return tree1.value === tree2.value</span>
+                  &amp;&amp; Expression.equals(tree1.left, tree2.left)
+                  &amp;&amp; Expression.equals(tree1.right, tree2.right);
+  }
+  static equivalent(tree1, tree2) {
+<span class="cstat-no" title="statement not covered" >      return tree1.toString() === tree2.toString();</span>
+  }
+&nbsp;
+  size() {
+<span class="cstat-no" title="statement not covered" >      return size(this);</span>
+  }
+&nbsp;
+  toString() {
+      v</span>ar s = <span class="cstat-no" title="statement not covered" >[];
+<span class="cstat-no" title="statement not covered" >      walkTree(this, s);</span>
+<span class="cstat-no" title="statement not covered" >      return s.join('');</span>
+  };
+&nbsp;
+}
+&nbsp;
+export default Expression;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Aug 28 2016 13:11:14 GMT+0100 (BST)
+</div>
+</div>
+<script src="prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="sorter.js"></script>
+</body>
+</html>
