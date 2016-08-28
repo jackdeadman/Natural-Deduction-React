@@ -1,6 +1,10 @@
-import logicExpressionParser from '../../Parse/logicExpressionParser'
+import LogicExpressionParser from '../../Parse/logicExpressionParser'
 
 class Rule {
+
+  constructor() {
+    this.logicExpressionParser = new LogicExpressionParser();
+  }
 
   applyRule(...lines) {
     // if (new.target === Rule) {

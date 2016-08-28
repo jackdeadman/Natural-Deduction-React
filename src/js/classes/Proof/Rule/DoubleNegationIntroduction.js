@@ -1,12 +1,11 @@
 import Expression from '../../Parse/Expression'
 import LogicOperatorSet from '../../Parse/LogicOperatorSet'
-import logicExpressionParser from '../../Parse/logicExpressionParser'
 import Rule from './Rule'
 import ProofTree from '../ProofTree'
 
 class DoubleNegationIntroduction extends Rule {
   applyRule(expr) {
-    var expr = logicExpressionParser.parse(expr);
+    var expr = this.logicExpressionParser.parse(expr);
     var node1 = new Expression(LogicOperatorSet.NOT);
     var node2 = new Expression(LogicOperatorSet.NOT);
     node1.right = node2;

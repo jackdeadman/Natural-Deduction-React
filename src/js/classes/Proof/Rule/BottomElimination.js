@@ -1,6 +1,5 @@
 import Expression from '../../Parse/Expression'
 import LogicOperatorSet from '../../Parse/LogicOperatorSet'
-import logicExpressionParser from '../../Parse/logicExpressionParser'
 import Rule from './Rule'
 import ProofTree from '../ProofTree'
 
@@ -10,7 +9,7 @@ class BottomElimination extends Rule {
   }
 
   conditions(state, endpoint, [line1]) {
-    var line1Exp = logicExpressionParser.parse(state.line(line1).equation);
+    var line1Exp = this.logicExpressionParser.parse(state.line(line1).equation);
     var correctOperator = line1Exp.value === LogicOperatorSet.CONTRADICTION;
     return state.scope(endpoint).inScope(line1) && correctOperator;
   }

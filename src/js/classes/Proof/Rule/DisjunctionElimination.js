@@ -1,6 +1,5 @@
 import Expression from '../../Parse/Expression'
 import LogicOperatorSet from '../../Parse/LogicOperatorSet'
-import logicExpressionParser from '../../Parse/logicExpressionParser'
 import Rule from './Rule'
 import ProofTree from '../ProofTree'
 
@@ -16,7 +15,7 @@ class DisjunctionElimination extends Rule {
 
     console.log(assline1.last(), assline2.last());
 
-    var correctOperator = logicExpressionParser.parse(line1.equation).value === LogicOperatorSet.OR;
+    var correctOperator = this.logicExpressionParser.parse(line1.equation).value === LogicOperatorSet.OR;
     var areAssumptions = assline1.isAssumption() && assline2.isAssumption();
 
     return correctOperator && areAssumptions && (assline1.last().equation === assline2.last().equation);

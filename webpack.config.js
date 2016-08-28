@@ -21,7 +21,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, "dist/js"),
-    publicPath: 'js/',
+    publicPath: '/js/',
     filename: "client.min.js"
   },
   plugins: debug ? [] :[

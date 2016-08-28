@@ -1,6 +1,5 @@
 import Expression from '../../Parse/Expression'
 import LogicOperatorSet from '../../Parse/LogicOperatorSet'
-import logicExpressionParser from '../../Parse/logicExpressionParser'
 import Rule from './Rule'
 import ProofTree from '../ProofTree'
 
@@ -12,12 +11,12 @@ class NegationElimination extends Rule {
   conditions(state, endpoint, [line1, line2]) {
     var endpointScope = state.line(endpoint);
 
-    var expr1 = logicExpressionParser.parse(state.line(line1));
-    var expr2 = logicExpressionParser.parse(state.line(line2));
+    var expr1 = this.logicExpressionParser.parse(state.line(line1));
+    var expr2 = this.logicExpressionParser.parse(state.line(line2));
 
     var isNegatedVersion = Expression.equals(eq);
 
-    var nottedVersion = logicExpressionParser.parse(LogicOperatorSet.CONTRADICTION);
+    var nottedVersion = this.logicExpressionParser.parse(LogicOperatorSet.CONTRADICTION);
     nottedVersion.right = expr1;
 
     return endpointScope.inScope(line1)

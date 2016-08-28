@@ -13,17 +13,15 @@ import ConjunctionIntroduction from './../classes/Proof/Rule/ConjunctionIntroduc
 class Layout extends React.Component {
   constructor(props) {
     super(props);
-    var premises = ['A→C','B→C','A∨B'];
-    var conclusion = 'C';
+    var premises = ['A→C','D','¬D'];
+    var conclusion = '¬B';
     proofStore.getProofState().setLines();
     this.state = {
       premises,
       conclusion,
       proofState: proofStore.getProofState(),
       selectedLines: []
-    };
-    window.con = ConjunctionIntroduction;
-    window.state = proofStore.getProofState();
+    }
   }
 
   componentWillMount() {
