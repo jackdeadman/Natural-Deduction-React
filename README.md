@@ -16,7 +16,7 @@ Currently the only way to install the software is from source.
 
 ## Usage
 
-![Home page of the application](https://lh5.googleusercontent.com/sm9UQmZvc6pmHsbTLSU6IFyPrLUDZ51EJMj3_5_4Zg7ZvTbnQmWvFt8WxM7GwjndR8I9yiUBgwTMi_g=w1280-h726-rw)
+![Home page of the application](https://dl.dropboxusercontent.com/s/9qupjygfvhlz2i5/Screen%20Shot%202016-08-28%20at%2011.46.15.png)
 
 Type your premises and conclusion on the homepage and then press start. Special characters can be inputting using the corresponding characters.
 
@@ -28,7 +28,7 @@ Type your premises and conclusion on the homepage and then press start. Special 
 
 Currently the picture below shows the application solving the sequent. All the rules where applied programatically
 
-![Main application] (https://lh4.googleusercontent.com/2K4V2CgHVzuWMtLBOMFCJP674F3Uuce2eQgrLwjHT6xIQFgsPe7Ud8HkgxP4lQaUe0wV2OR9elv4YHo=w1280-h726-rw)
+![Main application] (https://dl.dropboxusercontent.com/s/rtaa94f4pl8gf8l/Screen%20Shot%202016-08-28%20at%2011.47.13.png?dl=0)
 
 
 ## Contributing
