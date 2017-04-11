@@ -21,9 +21,7 @@ class Layout extends React.Component {
       conclusion,
       proofState: proofStore.getProofState(),
       selectedLines: []
-    };
-    window.con = ConjunctionIntroduction;
-    window.state = proofStore.getProofState();
+    }
   }
 
   componentWillMount() {

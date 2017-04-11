@@ -1,13 +1,12 @@
 import Expression from '../../Parse/Expression'
 import LogicOperatorSet from '../../Parse/LogicOperatorSet'
-import logicExpressionParser from '../../Parse/logicExpressionParser'
 import Rule from './Rule'
 import ProofTree from '../ProofTree'
 
 class ConjunctionElimination extends Rule {
   conditions(state, endpoint, [line1]) {
     var line1Obj = state.line(line1);
-    var line1Exp = logicExpressionParser.parse(line1Obj.equation);
+    var line1Exp = this.logicExpressionParser.parse(line1Obj.equation);
     var correctOperator = line1Exp.value === LogicOperatorSet.AND;
 
     var endPointScope = state.scope(endpoint);

@@ -34,12 +34,13 @@ gulp.task("webpack-dev-server", function(callback) {
   // Start a webpack-dev-server
   var config = require('./webpack.config.js');
   var compiler = webpack(config);
-
+  console.log(config);
   new WebpackDevServer(compiler, {
     contentBase: "src",
     inline: true,
     hot: true
-  }).listen(8080, "localhost", function(err) {
+  })
+  .listen(8080, "localhost", function(err) {
     if(err) throw new gutil.PluginError("webpack-dev-server", err);
     // Server listening
     gutil.log("[webpack-dev-server]", "http://localhost:8080/webpack-dev-server/index.html");
@@ -49,7 +50,7 @@ gulp.task("webpack-dev-server", function(callback) {
   });
 });
 
-gulp.task('webpack', function() {
+gulp.task('compileJS', function() {
   process.env.NODE_ENV = "production";
   var config = require('./webpack.config.js');
   return gulp.src('src/client.js')
@@ -68,5 +69,9 @@ gulp.task('webpack:watch', function() {
   gulp.watch('src/js/**/*.js', ['webpack']);
 });
 
+gulp.task('moveIndex', function() {
+  return gulp.src('src/index.html').pipe(gulp.dest('dist'));
+});
+
 gulp.task('default', ['sass:debug', 'sass:watch', 'webpack-dev-server']);
-gulp.task('build', ['sass:production', 'webpack']);
+gulp.task('build', ['sass:production', 'compileJS', 'moveIndex']);

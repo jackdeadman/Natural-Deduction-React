@@ -1,4 +1,3 @@
-import logicExpressionParser from '../../Parse/logicExpressionParser'
 import Expression from '../../Parse/Expression'
 import LogicOperatorSet from '../../Parse/LogicOperatorSet'
 import Rule from './Rule'
@@ -7,8 +6,8 @@ import ProofTree from '../ProofTree'
 class ImplicationIntroduction extends Rule {
   applyRule(leftExpr, rightExpr) {
     var operator = new Expression(LogicOperatorSet.IMPLIES);
-    operator.left = logicExpressionParser.parse(leftExpr);
-    operator.right = logicExpressionParser.parse(rightExpr);
+    operator.left = this.logicExpressionParser.parse(leftExpr);
+    operator.right = this.logicExpressionParser.parse(rightExpr);
 
     return operator.toString();
   }

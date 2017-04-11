@@ -1,9 +1,15 @@
 import React from 'react';
-import parser from '../../classes/Parse/LogicExpressionParser'
+import LogicExpressionParser from '../../classes/Parse/LogicExpressionParser'
 
 class SequentDisplayer extends React.Component {
-  addValid(string) {
-    var valid = parser.isWellformed(string);
+
+  constructor() {
+    super();
+    this.logicExpressionParser = new LogicExpressionParser();
+  }
+
+  addValid = (string) => {
+    var valid = this.logicExpressionParser.isWellformed(string);
     var className = valid ? 'valid' : 'invalid';
     return <span class={"sequent-displayer__equation "+className}>{string}</span>;
   }

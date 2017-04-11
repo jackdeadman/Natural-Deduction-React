@@ -1,6 +1,5 @@
 import Expression from '../../Parse/Expression'
 import LogicOperatorSet from '../../Parse/LogicOperatorSet'
-import logicExpressionParser from '../../Parse/logicExpressionParser'
 import Rule from './Rule'
 import ProofTree from '../ProofTree'
 
@@ -14,8 +13,8 @@ class ImplicationElimination extends Rule {
     var line1Obj = state.line(line1);
     var line2Obj = state.line(line2);
 
-    var line1Exp = logicExpressionParser.parse(line1Obj.equation);
-    var line2Exp = logicExpressionParser.parse(line2Obj.equation);
+    var line1Exp = this.logicExpressionParser.parse(line1Obj.equation);
+    var line2Exp = this.logicExpressionParser.parse(line2Obj.equation);
 
     var correctOperator = line1Exp.value === LogicOperatorSet.IMPLIES;
     var follows = Expression.equals(line1Exp.left, line2Exp);
