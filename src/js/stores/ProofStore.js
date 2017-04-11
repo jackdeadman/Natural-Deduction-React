@@ -10,7 +10,8 @@ import DoubleNegationElimination from '../classes/Proof/Rule/DoubleNegationElimi
 import ConjunctionElimination1 from '../classes/Proof/Rule/ConjunctionElimination1'
 import ConjunctionElimination2 from '../classes/Proof/Rule/ConjunctionElimination2'
 import DisjunctionElimination from '../classes/Proof/Rule/DisjunctionElimination'
-import DisjunctionIntroduction from '../classes/Proof/Rule/DisjunctionIntroduction'
+import DisjunctionIntroduction1 from '../classes/Proof/Rule/DisjunctionIntroduction1'
+import DisjunctionIntroduction2 from '../classes/Proof/Rule/DisjunctionIntroduction2'
 import BottomElimination from '../classes/Proof/Rule/BottomElimination'
 import NegationElimination from '../classes/Proof/Rule/NegationElimination'
 import NegationIntroduction from '../classes/Proof/Rule/NegationIntroduction'
@@ -22,11 +23,27 @@ class ProofStore extends EventEmitter {
     super();
     window.parser = parser;
     var ps;
-    this.proofState = ps = ProofTreeFactory.createNew(['A→C','D', '¬D']);
-    NegationElimination.applyRuleToProof(ps, 1,[2,3]);
-    ps.scope(3).addLineNewScope(ProofTreeFactory.createAssumption('B'));
-    NegationElimination.applyRuleToProof(ps, 5, [2,3]);
-    NegationIntroduction.applyRuleToProof(ps, 4, [5]);
+    window.ps = this.proofState = ps = ProofTreeFactory.createNew(['(p∧q)∨(p∧r)']);
+    ps.scope(1).addLineNewScope(ProofTreeFactory.createAssumption('(p∧q)'))
+    ConjunctionElimination1.applyRuleToProof(ps, 2, [2]);
+    ConjunctionElimination2.applyRuleToProof(ps, 3, [2]);
+    DisjunctionIntroduction1.applyRuleToProof(ps, 4, [4], 'r')
+    ConjunctionIntroduction.applyRuleToProof(ps, 5, [3, 5])
+
+    ps.scope(1).addLineNewScope(ProofTreeFactory.createAssumption('(p∧r)'))
+    ConjunctionElimination1.applyRuleToProof(ps, 7, [7]);
+    ConjunctionElimination2.applyRuleToProof(ps, 8, [7]);
+    DisjunctionIntroduction2.applyRuleToProof(ps, 9, [9], 'q')
+
+    ConjunctionIntroduction.applyRuleToProof(ps, 10, [8, 10])
+
+    DisjunctionElimination.applyRuleToProof(ps, 2, [1, [2, 7]])
+
+    // this.proofState = ps = ProofTreeFactory.createNew(['A→C','D', '¬D']);
+    // NegationElimination.applyRuleToProof(ps, 1,[2,3]);
+    // ps.scope(3).addLineNewScope(ProofTreeFactory.createAssumption('B'));
+    // NegationElimination.applyRuleToProof(ps, 5, [2,3]);
+    // NegationIntroduction.applyRuleToProof(ps, 4, [5]);
   }
 
   getProofState() {

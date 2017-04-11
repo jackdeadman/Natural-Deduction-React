@@ -24,4 +24,4 @@ class LogicExpresssionParser extends Parser {
     }
   }
 }
-export default LogicExpresssionParser;
+export default new (LogicExpresssionParser);

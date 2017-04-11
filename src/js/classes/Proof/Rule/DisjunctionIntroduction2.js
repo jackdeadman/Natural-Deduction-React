@@ -4,7 +4,7 @@ import logicExpressionParser from '../../Parse/logicExpressionParser'
 import Rule from './Rule'
 import ProofTree from '../ProofTree'
 
-class DisjunctionIntroduction1 extends Rule {
+class DisjunctionIntroduction2 extends Rule {
   applyRule(leftExpr, rightExpr) {
     var operator = new Expression(LogicOperatorSet.OR);
     operator.left = logicExpressionParser.parse(leftExpr);
@@ -18,7 +18,7 @@ class DisjunctionIntroduction1 extends Rule {
 
   applyRuleToProof(proof, endpoint, [line], newExpr) {
     super.applyRuleToProof(proof, endpoint, [line]);
-    var equation = this.applyRule(proof.line(line).equation, newExpr);
+    var equation = this.applyRule(newExpr, proof.line(line).equation);
     proof.line(endpoint).addLine(new ProofTree({
       rule: this.toString([line]),
       equation
@@ -26,8 +26,8 @@ class DisjunctionIntroduction1 extends Rule {
   }
 
   toString([line1]) {
-    return `Disjunction Introduction ${line1}`;
+    return `Disjunction Introduction2 ${line1}`;
   }
 }
 
-export default new DisjunctionIntroduction1();
+export default new DisjunctionIntroduction2();

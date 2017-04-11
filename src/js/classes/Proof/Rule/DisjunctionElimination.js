@@ -14,11 +14,11 @@ class DisjunctionElimination extends Rule {
     var assline2 = state.line(assummedlines[1]);
     var line1 = state.line(line1);
 
-    console.log(assline1.last(), assline2.last());
+    // console.log(assline1.last(), assline2.last());
 
     var correctOperator = logicExpressionParser.parse(line1.equation).value === LogicOperatorSet.OR;
     var areAssumptions = assline1.isAssumption() && assline2.isAssumption();
-
+    console.log(line1.equation, assline1.equation, assline2.equation);
     return correctOperator && areAssumptions && (assline1.last().equation === assline2.last().equation);
   }
 

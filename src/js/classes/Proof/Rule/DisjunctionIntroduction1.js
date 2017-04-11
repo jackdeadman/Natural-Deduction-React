@@ -26,7 +26,7 @@ class DisjunctionIntroduction1 extends Rule {
   }
 
   toString([line1]) {
-    return `Disjunction Introduction ${line1}`;
+    return `Disjunction Introduction1 ${line1}`;
   }
 }
 

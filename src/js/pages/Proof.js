@@ -13,8 +13,8 @@ import ConjunctionIntroduction from './../classes/Proof/Rule/ConjunctionIntroduc
 class Layout extends React.Component {
   constructor(props) {
     super(props);
-    var premises = ['A→C','B→C','A∨B'];
-    var conclusion = 'C';
+    var premises = ['(p∧q)∨(p∧r)'];
+    var conclusion = 'p∧q∨r';
     proofStore.getProofState().setLines();
     this.state = {
       premises,
